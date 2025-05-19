@@ -1,8 +1,8 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1747342909
+::res://::1747687421
 icon.svg::CompressedTexture2D/CompressedTexture2D::4724126754305476637::1747282229::1747282245::1::::<><><>0<>0<>cc030e9ec06680c64bd1e57df3edb035<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-node_2d.tscn::PackedScene::8809673453673212795::1747289173::0::1::::<><><>0<>0<><>::uid://bwojj76ui3631::::res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Idle (32x32).png<>uid://chl133f1rbgvf::::res://player.gd<>uid://jy45uyjvwseu::::res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Run (32x32).png<>uid://dqxe77wtvpj2b::::res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Jump (32x32).png
-player.gd::GDScript::5288501551770263295::1747286989::0::1::::<>CharacterBody2D<><>0<>0<><>::
+node_2d.tscn::PackedScene::8809673453673212795::1747687407::0::1::::<><><>0<>0<><>::uid://bwojj76ui3631::::res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Idle (32x32).png<>uid://chl133f1rbgvf::::res://player.gd<>uid://jy45uyjvwseu::::res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Run (32x32).png<>uid://dqxe77wtvpj2b::::res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Jump (32x32).png<>uid://l72nqc5227wl::::res://Pixel Adventure 1/Assets/Terrain/Terrain (16x16) 1.png
+player.gd::GDScript/GDScript::5288501551770263295::1747286989::0::1::::<>CharacterBody2D<><>0<>0<><>::
 ::res://Pixel Adventure 1/::1747282538
 ::res://Pixel Adventure 1/Assets/::1747282576
 ::res://Pixel Adventure 1/Assets/Background/::1747282596
