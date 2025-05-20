@@ -1,3 +1,9 @@
 res://node_2d.tscn
 res://Scenes/player.tscn
 res://player.gd
+res://Scenes/MAIN.tscn
+res://Scenes/test_level_1.tscn
+res://Scenes/TESTLEVEL_2.tscn
+res://Scenes/player1.tscn
+res://Scenes/player2.tscn
+res://Scripts/player_2.gd

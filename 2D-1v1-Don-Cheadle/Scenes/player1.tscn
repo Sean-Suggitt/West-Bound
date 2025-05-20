@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://fsrix36hi5pg"]
 
-[ext_resource type="Script" uid="uid://chl133f1rbgvf" path="res://player.gd" id="1_vgqql"]
+[ext_resource type="Script" uid="uid://chl133f1rbgvf" path="res://Scripts/player_1.gd" id="1_vgqql"]
 [ext_resource type="Texture2D" uid="uid://bwojj76ui3631" path="res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Idle (32x32).png" id="2_fkybt"]
 [ext_resource type="Texture2D" uid="uid://dqxe77wtvpj2b" path="res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Jump (32x32).png" id="3_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://jy45uyjvwseu" path="res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Run (32x32).png" id="4_3smsa"]
@@ -143,7 +143,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
-"speed": 5.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -197,7 +197,7 @@ script = ExtResource("1_vgqql")
 position = Vector2(0, -3.755)
 scale = Vector2(1.00837, 1.00484)
 sprite_frames = SubResource("SpriteFrames_1fr6y")
-animation = &"jump"
+animation = &"run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 1.1225)
