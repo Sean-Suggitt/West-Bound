@@ -191,8 +191,8 @@ animations = [{
 "speed": 20.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
-size = Vector2(18, 22.245)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6mtmu"]
+size = Vector2(21, 24.1225)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_6mtmu")
@@ -201,8 +201,9 @@ script = ExtResource("1_6mtmu")
 position = Vector2(0, -3.755)
 scale = Vector2(1.00837, 1.00484)
 sprite_frames = SubResource("SpriteFrames_1fr6y")
-animation = &"run"
+animation = &"idle"
+frame_progress = 0.0716695
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 1.1225)
-shape = SubResource("RectangleShape2D_0e48y")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.0612502)
+shape = SubResource("RectangleShape2D_6mtmu")

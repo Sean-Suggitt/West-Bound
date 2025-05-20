@@ -188,17 +188,23 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
-size = Vector2(18, 22.245)
+size = Vector2(21, 24.1225)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_vgqql")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -3.755)
+position = Vector2(0, -4)
 scale = Vector2(1.00837, 1.00484)
 sprite_frames = SubResource("SpriteFrames_1fr6y")
-animation = &"run"
+animation = &"idle"
+frame_progress = 0.432801
+
+[node name="GunPoint" type="Marker2D" parent="AnimatedSprite2D"]
+position = Vector2(9.91699, 8.95665)
+scale = Vector2(0.991699, 0.995183)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 1.1225)
+visible = false
+position = Vector2(0.5, 0.0612502)
 shape = SubResource("RectangleShape2D_0e48y")
