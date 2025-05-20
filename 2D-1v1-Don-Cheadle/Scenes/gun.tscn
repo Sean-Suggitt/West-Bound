@@ -4,10 +4,10 @@
 
 [node name="Gun" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="GunSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_nxj5y")
 centered = false
 offset = Vector2(0, -4)
 
-[node name="BulletPoint" type="Marker2D" parent="Sprite2D"]
+[node name="BulletPoint" type="Marker2D" parent="GunSprite"]
 position = Vector2(10, -3)

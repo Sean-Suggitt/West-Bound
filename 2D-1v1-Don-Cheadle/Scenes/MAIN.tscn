@@ -8,6 +8,7 @@
 [node name="Main" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.45, 2.45)
 
 [node name="Node2D" parent="." instance=ExtResource("2_rqf0l")]
 
@@ -15,7 +16,6 @@
 position = Vector2(-116, 67)
 
 [node name="Player2" parent="." instance=ExtResource("3_c5rrr")]
-visible = false
 position = Vector2(116, 67)
 
 [node name="GunHolder" parent="." instance=ExtResource("4_783md")]
