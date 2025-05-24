@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://kwaw2w2emcy3"]
+[gd_scene load_steps=32 format=3 uid="uid://kwaw2w2emcy3"]
 
-[ext_resource type="Script" uid="uid://chl133f1rbgvf" path="res://Scripts/player_1.gd" id="1_xwiga"]
+[ext_resource type="Script" uid="uid://bb2ufopx6shlm" path="res://Scripts/PlayerScript.gd" id="1_6nwty"]
 [ext_resource type="Texture2D" uid="uid://bwojj76ui3631" path="res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Idle (32x32).png" id="2_6nwty"]
 [ext_resource type="Texture2D" uid="uid://dqxe77wtvpj2b" path="res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Jump (32x32).png" id="3_uuggy"]
 [ext_resource type="Texture2D" uid="uid://jy45uyjvwseu" path="res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Run (32x32).png" id="4_tr25n"]
+[ext_resource type="Texture2D" uid="uid://drld783ltswdh" path="res://Images/revolver.png" id="5_6nwty"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0hol4"]
 atlas = ExtResource("2_6nwty")
@@ -190,17 +191,20 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
 size = Vector2(21, 24.1225)
 
-[node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_xwiga")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwiga"]
+size = Vector2(52, 25)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_6nwty")
+
+[node name="AniPlayerSpr" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)
 scale = Vector2(1.00837, 1.00484)
 sprite_frames = SubResource("SpriteFrames_1fr6y")
 animation = &"idle"
 frame_progress = 0.432801
 
-[node name="GunPoint" type="Marker2D" parent="AnimatedSprite2D"]
+[node name="GunPoint" type="Marker2D" parent="AniPlayerSpr"]
 position = Vector2(9.91699, 8.95665)
 scale = Vector2(0.991699, 0.995183)
 
@@ -208,3 +212,17 @@ scale = Vector2(0.991699, 0.995183)
 visible = false
 position = Vector2(0.5, 0.0612502)
 shape = SubResource("RectangleShape2D_0e48y")
+
+[node name="pickup_range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickup_range"]
+visible = false
+position = Vector2(11, -0.5)
+shape = SubResource("RectangleShape2D_xwiga")
+
+[node name="Revolver_Sprite" type="Sprite2D" parent="."]
+position = Vector2(26, -11)
+texture = ExtResource("5_6nwty")
+
+[connection signal="area_entered" from="pickup_range" to="." method="_on_pickup_range_area_entered"]
+[connection signal="area_exited" from="pickup_range" to="." method="_on_pickup_range_area_exited"]

@@ -1,12 +1,2 @@
-Sprite2D
 CollisionShape2D
-Area2D
-Marker2D
-AnimationPlayer
-TileMapLayer
-TileMap
-StaticBody2D
-TextureRect
-Camera2D
-AnimatedSprite2D
-CharacterBody2D
+RigidBody2D

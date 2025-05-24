@@ -1,1 +1,6 @@
+res://Scenes/MAIN.tscn
+res://TILEMAPS/TILEMAP_1.tres
 res://Scenes/PlayerScene.tscn
+res://Scenes/Revolver.tscn
+res://Scripts/PlayerScript.gd
+res://Scenes/TESTLEVEL_2.tscn
