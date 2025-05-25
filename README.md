@@ -1,9 +1,9 @@
 # WEST BOUND
 
 ## Game Contributors:
-- Harry Bhugtana 
-- Sean Suggitt 
-- Simranjit Gahra
+- Harry Bhugtana (200489631)
+- Sean Suggitt (200263633)
+- Simranjit Gahra (200484408)
 
 ## Story Line:
 West Bound is a fast paced 1v1 multiplayer shooter game set in a gritty, mystic Wild West. This pixel art, 2d combat game, pits two rival cowboys against one another in a prolonged and tenacious race towards the famed town  “Dinkleberry”, located in the heartlands where they will meet, at the Saloon of the Setting Sun. What are they looking for? An urban legend whispered amongst the elitist outlaws and bounty hunters, The Golden Revolver. As they uncover each other's motives to possess the urban myth, they realize only one cowboy will obtain the ancient relic. BOOM, an explosion is heard amongst the busy town. One of the cowboys “Del Rado” shoots a barrel filled with explosive gasses, initiating the gruesome battle, catching the attention of Ocelot Shalashaska. What proceeds will determine who will holster the legendary Golden Revolver. 
