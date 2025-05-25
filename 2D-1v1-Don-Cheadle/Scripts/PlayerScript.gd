@@ -11,6 +11,7 @@ var deceleration = 0.1
 var holding_item: bool = false ##
 var drop_pos: Vector2             ##
 var items_in_range: Array = [] ##
+var air_deceleration = 0.05
 
 const JUMP_VELOCITY = -400.0
 var decelerate_on_jump_release = 0.01
@@ -43,11 +44,20 @@ func _physics_process(delta: float) -> void:
 		item_spr.position.x = abs(item_spr.position.x) * direction
 		drop_pos = Vector2(direction * 12, 13)
 		sprite.play("run")
+		print(velocity.x / 300)
+		if(abs(velocity.x / 300) > 0.67):
+			air_deceleration = 0.033
+		elif(abs(velocity.x / 300) < 0.67):
+			air_deceleration = 0.05
 	elif direction != 0:
 		sprite.play("jump")
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed * deceleration)
-		sprite.play("idle")
+		if not is_on_floor() and direction == 0:
+			velocity.x = move_toward(velocity.x, 0, speed * air_deceleration)
+			print(air_deceleration)
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed * deceleration)
+			sprite.play("idle")
 		
 
 	move_and_slide()

@@ -210,4 +210,3 @@ shape = SubResource("RectangleShape2D_6mtmu")
 
 [node name="GunPoint" type="Marker2D" parent="."]
 position = Vector2(10, 5.245)
-scale = Vector2(1, 1)

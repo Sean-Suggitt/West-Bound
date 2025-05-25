@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbnwfsgnro5k4"]
+
+[ext_resource type="Texture2D" uid="uid://bjsjgni8f7mmf" path="res://Images/pistol.png" id="1_nxj5y"]
+
+[node name="Gun" type="Node2D"]
+
+[node name="GunSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_nxj5y")
+centered = false
+offset = Vector2(0, -4)
+
+[node name="BulletPoint" type="Marker2D" parent="GunSprite"]
+position = Vector2(10, -3)

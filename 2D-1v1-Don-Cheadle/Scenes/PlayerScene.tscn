@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://kwaw2w2emcy3"]
+[gd_scene load_steps=32 format=3 uid="uid://bcgegtsnnb4gq"]
 
 [ext_resource type="Script" uid="uid://bb2ufopx6shlm" path="res://Scripts/PlayerScript.gd" id="1_6nwty"]
 [ext_resource type="Texture2D" uid="uid://bwojj76ui3631" path="res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Idle (32x32).png" id="2_6nwty"]
@@ -216,8 +216,7 @@ shape = SubResource("RectangleShape2D_0e48y")
 [node name="pickup_range" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pickup_range"]
-visible = false
-position = Vector2(11, -0.5)
+position = Vector2(7, 0)
 shape = SubResource("RectangleShape2D_xwiga")
 
 [node name="Revolver_Sprite" type="Sprite2D" parent="."]
