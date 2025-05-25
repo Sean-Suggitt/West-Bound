@@ -10,4 +10,3 @@ West Bound is a fast paced 1v1 multiplayer shooter game set in a gritty, mystic 
 
 ## Game Description:
 The gameplay consists of two players spawning into a level with no guns on equal footing, where they have to race to grab a gun off the floor and shoot the other player. The game gives the same opportunities to both players to keep it fair. If a player manages to kill the other player, that player gains a point. There is a match which consists of three levels, and each level consists of three rounds. Rounds are best of 1, levels are best of three, and a match is also best of three. This gives a round of West Bound a variety of levels for the players as well as competitive fairness.
-...
