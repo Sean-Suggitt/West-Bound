@@ -32,6 +32,13 @@ var momentum_intervals = [
 	{"speed_ratio": 1.0, "deceleration": 0.025}  # Maximum speed
 ]
 
+# Coyote Time & Jump Buffering System
+var coyote_time = 0.11           # Grace period after leaving ground (in seconds)
+var jump_buffer_time = 0.13      # How long to remember jump input (in seconds)d
+var coyote_timer = 0.0           # Time since left ground
+var jump_buffer_timer = 0.0      # Time since jump was pressed
+var was_on_floor = false         # Track ground state changes
+
 func _ready() -> void:
 	item_spr.hide() ##
 
@@ -39,22 +46,54 @@ func _physics_process(delta: float) -> void:
 
 	# Get the animated sprite node
 	var sprite = $AniPlayerSpr
-	# Add the gravity.
-	if not is_on_floor():
+ 
+	# Track ground state for coyote time
+	var currently_on_floor = is_on_floor()
+	
+	# Update coyote timer
+	if currently_on_floor:
+		coyote_timer = 0.0  # Reset when on ground
+	elif was_on_floor and not currently_on_floor:
+		coyote_timer = 0.0  # Just left ground, start coyote time
+	else:
+		coyote_timer += delta  # Count
+
+	was_on_floor = currently_on_floor
+	
+	# Update jump buffer timer (countdown)
+	if jump_buffer_timer > 0:
+		jump_buffer_timer -= delta
+	
+	# Add gravity
+	if not currently_on_floor:
 		velocity += get_gravity() * delta
  
-	# Handle jump.
-	if Input.is_action_just_pressed("P1_jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	# Enhanced jump logic with coyote time and jump buffering
+	var can_coyote_jump = coyote_timer <= coyote_time
+	var has_jump_buffered = jump_buffer_timer > 0
 	
+	# Handle jump input - store it in buffer
+	if Input.is_action_just_pressed("P1_jump"):
+		jump_buffer_timer = jump_buffer_time  # Store jump input for buffering
+	
+	# Execute jump if conditions are met
+	if has_jump_buffered and (currently_on_floor or can_coyote_jump):
+		velocity.y = JUMP_VELOCITY
+		jump_buffer_timer = 0.0  # Consume the buffered jump
+		coyote_timer = coyote_time + 1  # Prevent multiple coyote jumps
+		
+		# Optional: Add visual/audio feedback here
+		# print("Jump executed! Ground: ", currently_on_floor, " Coyote: ", can_coyote_jump)
+	
+	# Variable jump height
 	if Input.is_action_just_released("P1_jump") and velocity.y < 0:
 		velocity.y *= decelerate_on_jump_release
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("P1_left", "P1_right") # returns -1(left) 1(right) 0(neither)
 
-	if is_on_floor():
-		# Ground movement (your existing logic)
+	if currently_on_floor:
+		# Ground movement
 		if direction:
 			velocity.x = move_toward(velocity.x, direction * speed, speed * acceleration)
 			sprite.flip_h = direction < 0
@@ -66,6 +105,7 @@ func _physics_process(delta: float) -> void:
 			# Calculate smooth momentum-based air deceleration
 			var current_speed_ratio = abs(velocity.x) / speed
 			air_deceleration = calculate_momentum_deceleration(current_speed_ratio)
+			print(air_deceleration)
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed * deceleration)
 			sprite.play("idle")
