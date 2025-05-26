@@ -1,8 +1,8 @@
 res://Scenes/MAIN.tscn
 res://TILEMAPS/TILEMAP_1.tres
-res://Scripts/PlayerScript.gd
 res://Scenes/player2.tscn
 res://Scenes/gun.tscn
 res://Scenes/TESTLEVEL_2.tscn
 res://Scenes/PlayerScene.tscn
 res://test2.tscn
+res://Scripts/PlayerScript.gd

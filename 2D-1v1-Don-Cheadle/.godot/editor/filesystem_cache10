@@ -1,6 +1,7 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1748143612
+::res://::1748224536
 icon.svg::CompressedTexture2D/CompressedTexture2D::4724126754305476637::1747799813::1748142815::1::::<><><>0<>0<>cc030e9ec06680c64bd1e57df3edb035<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+test2.tscn::PackedScene::7585181481638538711::1748145418::0::1::::<><><>0<>0<><>::uid://ccf7gtqpv7klk::::res://TILEMAPS/TILEMAP_1.tres
 ::res://Images/::1748142815
 bullet.png::CompressedTexture2D/CompressedTexture2D::7500867927937626697::1747799812::1748142815::1::::<><><>0<>0<>4ac90d46c244d400a4d1a6cc094032c2<>res://.godot/imported/bullet.png-18cff16e5f90b71ef60d58358cc4d7bc.ctex::
 gun holder.png::CompressedTexture2D/CompressedTexture2D::1865324146607971812::1747799812::1748142815::1::::<><><>0<>0<>d5c202a84693e277bc65d09de36452bf<>res://.godot/imported/gun holder.png-d6e23e8bd4a91717df57db119ad6b3ba.ctex::
@@ -153,22 +154,22 @@ Idle.png::CompressedTexture2D/CompressedTexture2D::5387560745998064110::17477998
 Idle.png::CompressedTexture2D/CompressedTexture2D::3308733467725712185::1747799813::1748142815::1::::<><><>0<>0<>084920d75910914657bcb49976284f3d<>res://.godot/imported/Idle.png-fb84cbd92b3fb99d7902a17dc0aa36a2.ctex::
 Jump (28x28).png::CompressedTexture2D/CompressedTexture2D::6103636243386075577::1747799813::1748142815::1::::<><><>0<>0<>04c41182a7c4c4b97c5b68126fa45841<>res://.godot/imported/Jump (28x28).png-0f8bffbdd0ee33eb93a86f655ecdf1d4.ctex::
 ::res://Pixel Adventure 1/Scenes/::1747799813
-::res://Scenes/::1748143595
+::res://Scenes/::1748148049
 bullet.tscn::PackedScene/PackedScene::6776793236654796214::1747799813::0::1::::<><><>0<>0<><>::uid://bqxhgvo3oyxp7::::res://Scripts/Bullet.gd<>uid://de4qg05484nlh::::res://Images/bullet.png
-gun.tscn::PackedScene::7257633463633591945::1748143436::0::1::::<><><>0<>0<><>::uid://bjsjgni8f7mmf::::res://Images/pistol.png
+gun.tscn::PackedScene::7257633463633591945::1748145418::0::1::::<><><>0<>0<><>::uid://bjsjgni8f7mmf::::res://Images/pistol.png
 GunSpawner.tscn::PackedScene/PackedScene::3703206453411408277::1747799813::0::1::::<><><>0<>0<><>::uid://1ttu7j3vqerc::::res://Images/gun holder.png
-MAIN.tscn::PackedScene::8809673453673212795::1748143595::0::1::::<><><>0<>0<><>::res://Scenes/MainScript.gd<>uid://ce3q25xiqpw3f::::res://Scenes/TESTLEVEL_2.tscn<>res://Scenes/Revolver.tscn<>uid://bs04jfikm7vb6::::res://Scenes/GunSpawner.tscn<>uid://bcgegtsnnb4gq::::res://Scenes/PlayerScene.tscn
+MAIN.tscn::PackedScene::8809673453673212795::1748148049::0::1::::<><><>0<>0<><>::res://Scenes/MainScript.gd<>uid://b26b6vpjfeouj::::res://Scenes/Revolver.tscn<>uid://bs04jfikm7vb6::::res://Scenes/GunSpawner.tscn<>uid://bcgegtsnnb4gq::::res://Scenes/PlayerScene.tscn<>uid://dgck3inrsfhpv::::res://test2.tscn
 MainScript.gd::GDScript/GDScript::-1::1748142742::0::1::::<>Node2D<><>0<>0<><>::
 player1.tscn::PackedScene/PackedScene::389150745701286028::1747799813::0::1::::<><><>0<>0<><>::uid://chl133f1rbgvf::::res://Scripts/player_1.gd<>uid://bwojj76ui3631::::res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Idle (32x32).png<>uid://dqxe77wtvpj2b::::res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Jump (32x32).png<>uid://jy45uyjvwseu::::res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Run (32x32).png
-player2.tscn::PackedScene::3768590006651719269::1748143436::0::1::::<><><>0<>0<><>::uid://dke4hwkkeyqti::::res://Scripts/player_2.gd<>uid://cpjr7mnb38bkq::::res://Pixel Adventure 1/Assets/Main Characters/Virtual Guy/Idle (32x32).png<>uid://bd5hc40u5hw2v::::res://Pixel Adventure 1/Assets/Main Characters/Virtual Guy/Jump (32x32).png<>uid://de1vaqppnkx55::::res://Pixel Adventure 1/Assets/Main Characters/Virtual Guy/Run (32x32).png
-PlayerScene.tscn::PackedScene::2539439246586257864::1748143436::0::1::::<><><>0<>0<><>::uid://bb2ufopx6shlm::::res://Scripts/PlayerScript.gd<>uid://bwojj76ui3631::::res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Idle (32x32).png<>uid://dqxe77wtvpj2b::::res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Jump (32x32).png<>uid://jy45uyjvwseu::::res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Run (32x32).png<>uid://drld783ltswdh::::res://Images/revolver.png
-Revolver.tscn::PackedScene::4345632375477840569::1748142815::0::1::::<><><>0<>0<><>::uid://drld783ltswdh::::res://Images/revolver.png
-TESTLEVEL_2.tscn::PackedScene::5112420618988187597::1748143436::0::1::::<><><>0<>0<><>::uid://ccf7gtqpv7klk::::res://TILEMAPS/TILEMAP_1.tres
+player2.tscn::PackedScene::3768590006651719269::1748145418::0::1::::<><><>0<>0<><>::uid://dke4hwkkeyqti::::res://Scripts/player_2.gd<>uid://cpjr7mnb38bkq::::res://Pixel Adventure 1/Assets/Main Characters/Virtual Guy/Idle (32x32).png<>uid://bd5hc40u5hw2v::::res://Pixel Adventure 1/Assets/Main Characters/Virtual Guy/Jump (32x32).png<>uid://de1vaqppnkx55::::res://Pixel Adventure 1/Assets/Main Characters/Virtual Guy/Run (32x32).png
+PlayerScene.tscn::PackedScene::2539439246586257864::1748145418::0::1::::<><><>0<>0<><>::uid://bb2ufopx6shlm::::res://Scripts/PlayerScript.gd<>uid://bwojj76ui3631::::res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Idle (32x32).png<>uid://dqxe77wtvpj2b::::res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Jump (32x32).png<>uid://jy45uyjvwseu::::res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Run (32x32).png<>uid://drld783ltswdh::::res://Images/revolver.png
+Revolver.tscn::PackedScene/PackedScene::4345632375477840569::1748142815::0::1::::<><><>0<>0<><>::uid://drld783ltswdh::::res://Images/revolver.png
+TESTLEVEL_2.tscn::PackedScene::5112420618988187597::1748145418::0::1::::<><><>0<>0<><>::uid://ccf7gtqpv7klk::::res://TILEMAPS/TILEMAP_1.tres
 test_level_1.tscn::PackedScene/PackedScene::6610994716605298370::1747799813::0::1::::<><><>0<>0<><>::uid://ccf7gtqpv7klk::::res://TILEMAPS/TILEMAP_1.tres
-::res://Scripts/::1748143595
+::res://Scripts/::1748145106
 Bullet.gd::GDScript/GDScript::3557359729867274522::1747799813::0::1::::<>Sprite2D<><>0<>0<><>::
-PlayerScript.gd::GDScript::2513571755101726526::1748143595::0::1::::<>CharacterBody2D<><>0<>0<><>::
-player_1.gd::GDScript::5288501551770263295::1748142742::0::1::::<>CharacterBody2D<><>0<>0<><>::
+PlayerScript.gd::GDScript::2513571755101726526::1748145106::0::1::::<>CharacterBody2D<><>0<>0<><>::
+player_1.gd::GDScript/GDScript::5288501551770263295::1748142742::0::1::::<>CharacterBody2D<><>0<>0<><>::
 player_2.gd::GDScript/GDScript::7871182463245837198::1747799813::0::1::::<>CharacterBody2D<><>0<>0<><>::
-::res://TILEMAPS/::1748143123
-TILEMAP_1.tres::TileSet::4925495625335909464::1748143123::0::1::::<><><>0<>0<><>::uid://l72nqc5227wl::::res://Pixel Adventure 1/Assets/Terrain/Terrain (16x16) 1.png
+::res://TILEMAPS/::1748143694
+TILEMAP_1.tres::TileSet::4925495625335909464::1748143694::0::1::::<><><>0<>0<><>::uid://l72nqc5227wl::::res://Pixel Adventure 1/Assets/Terrain/Terrain (16x16) 1.png
