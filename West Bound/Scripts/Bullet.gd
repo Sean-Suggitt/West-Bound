@@ -8,9 +8,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	var motion = Vector2(projectile_speed, 0)
-	var collision = move_and_collide(motion) 
+	velocity = Vector2(projectile_speed, 0)
+	var motion = velocity
+	move_and_slide()
 
-	if collision:
-		var temp = Global.bullets_in_scene.pop_back()
-		temp.queue_free()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	Global.bullets_in_scene.pop_back()
+	queue_free()

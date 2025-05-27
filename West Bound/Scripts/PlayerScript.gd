@@ -146,8 +146,6 @@ func _physics_process(delta: float) -> void:
 		# Cap falling speed
 		velocity.y = min(velocity.y, terminal_velocity)
 		
-		# HANDLE BULLETS AND SHOOTING
-		
 
 	move_and_slide()
 

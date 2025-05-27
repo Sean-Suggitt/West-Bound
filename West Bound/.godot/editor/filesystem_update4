@@ -1,8 +1,9 @@
-res://Scenes/PlayerScene.tscn
-res://TILEMAPS/TILEMAP_1.tres
-res://Scripts/PlayerScript.gd
 res://Scenes/MAIN.tscn
+res://TILEMAPS/TILEMAP_1.tres
 res://Scenes/bullet.tscn
-res://Scripts/GLOBAL_SCRIPT.gd
-res://Scripts/Bullet.gd
+res://Scenes/PlayerScene.tscn
 res://Scenes/Revolver.tscn
+res://test2.tscn
+res://Scripts/PlayerScript.gd
+res://Scripts/Bullet.gd
+res://Scenes/TESTLEVEL_2.tscn
