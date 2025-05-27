@@ -1,52 +1,75 @@
 extends CharacterBody2D
-#References------------------------
-@onready var revolver = load("res://Scenes/Revolver.tscn")  ##
-@onready var item_spr = $Revolver_Sprite              ##
-@onready var player_spr = $AniPlayerSpr                ##
 
-#Variables_________________________
-var speed = 300.0
-var acceleration = 0.1
-var deceleration = 0.1
+#--------------------------------------------------------------------
+#--------------------------- VARIABLES ------------------------------
+#--------------------------------------------------------------------
+
+	#References-------------------------------------------------------------------
+@onready var revolver = load("res://Scenes/Revolver.tscn")  ##
+@onready var bullet = load("res://Scenes/bullet.tscn")
+@onready var item_spr = $Revolver_Sprite              ##
+@onready var revolver_tip = $gun_tip
+@onready var sprite = $AniPlayerSpr    # Get the animated sprite node
+
+
+	# Item Pickup System
 var holding_item: bool = false ##
 var drop_pos: Vector2             ##
 var items_in_range: Array = [] ##
-var air_deceleration = 0.05
 
-const JUMP_VELOCITY = -400.0
-var decelerate_on_jump_release = 0.01
+	# General Movement
+var speed = 300.0                      # Movement speed
+var acceleration = 0.1                 # Movemennt acceleration
+var deceleration = 0.1                 # Movement deceleration
+var air_deceleration = 0.05           
+const JUMP_VELOCITY = -400.0           # Jump force
+var decelerate_on_jump_release = 0.01  # Used in variable jump height
 
-# Air control physics
-var air_acceleration = 350.0      # More responsive air acceleration
-var air_friction = 145.0          # Base air resistance
-var air_control_factor = 0.9     # 90% of ground control in air
-var terminal_velocity = 600.0     # Max falling speed
+	# Bullet System
+var bullets_in_scene: Array = [] 
+var revolver_bullet_speed = 1000
+var bullet_despawn_timer = 0
 
-# Momentum system - multiple realistic intervals
-var momentum_intervals = [
-	{"speed_ratio": 0.0, "deceleration": 0.08},   # Stationary/very slow
-	{"speed_ratio": 0.2, "deceleration": 0.065}, # Walking speed
-	{"speed_ratio": 0.4, "deceleration": 0.05},  # Jogging speed
-	{"speed_ratio": 0.6, "deceleration": 0.04},  # Running speed
-	{"speed_ratio": 0.8, "deceleration": 0.032}, # Fast running
-	{"speed_ratio": 1.0, "deceleration": 0.025}  # Maximum speed
-]
-
-# Coyote Time & Jump Buffering System
+	# Coyote Time & Jump Buffering System
 var coyote_time = 0.11           # Grace period after leaving ground (in seconds)
 var jump_buffer_time = 0.13      # How long to remember jump input (in seconds)d
 var coyote_timer = 0.0           # Time since left ground
 var jump_buffer_timer = 0.0      # Time since jump was pressed
 var was_on_floor = false         # Track ground state changes
 
+	# Air control physics
+var air_acceleration = 350.0      # More responsive air acceleration
+var air_friction = 145.0          # Base air resistance
+var air_control_factor = 0.9      # 90% of ground control in air
+var terminal_velocity = 600.0     # Max falling speed
+
+	# Momentum system - multiple realistic intervals
+var momentum_intervals = [
+	{"speed_ratio": 0.0, "deceleration": 0.08},   # Stationary/very slow
+	{"speed_ratio": 0.2, "deceleration": 0.065},  # Walking speed
+	{"speed_ratio": 0.4, "deceleration": 0.05},   # Jogging speed
+	{"speed_ratio": 0.6, "deceleration": 0.04},   # Running speed
+	{"speed_ratio": 0.8, "deceleration": 0.032},  # Fast running
+	{"speed_ratio": 1.0, "deceleration": 0.025}   # Maximum speed
+]
+
+#--------------------------------------------------------------------
+#----------------------ENGINE FUNCTIONS------------------------------
+#--------------------------------------------------------------------
+
 func _ready() -> void:
 	item_spr.hide() ##
 
-func _physics_process(delta: float) -> void:
 
-	# Get the animated sprite node
-	var sprite = $AniPlayerSpr
- 
+# TODO: move all the constant update logic that is not
+#       related to physics from _physics_process() into _process()
+func _process(delta: float) -> void:
+	if not bullets_in_scene.is_empty():
+		bullet_despawn_timer += delta
+
+
+func _physics_process(delta: float) -> void:
+	
 	# Track ground state for coyote time
 	var currently_on_floor = is_on_floor()
 	
@@ -57,7 +80,7 @@ func _physics_process(delta: float) -> void:
 		coyote_timer = 0.0  # Just left ground, start coyote time
 	else:
 		coyote_timer += delta  # Count
-
+	
 	was_on_floor = currently_on_floor
 	
 	# Update jump buffer timer (countdown)
@@ -67,7 +90,6 @@ func _physics_process(delta: float) -> void:
 	# Add gravity
 	if not currently_on_floor:
 		velocity += get_gravity() * delta
- 
 	# Enhanced jump logic with coyote time and jump buffering
 	var can_coyote_jump = coyote_timer <= coyote_time
 	var has_jump_buffered = jump_buffer_timer > 0
@@ -88,10 +110,10 @@ func _physics_process(delta: float) -> void:
 	# Variable jump height
 	if Input.is_action_just_released("P1_jump") and velocity.y < 0:
 		velocity.y *= decelerate_on_jump_release
-
+	
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("P1_left", "P1_right") # returns -1(left) 1(right) 0(neither)
-
+	
 	if currently_on_floor:
 		# Ground movement
 		if direction:
@@ -126,6 +148,11 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+
+#--------------------------------------------------------------------
+#----------------------NON-ENGINE FUNCTIONS------------------------------
+#--------------------------------------------------------------------
+
 # Calculate momentum-based air deceleration using smooth interpolation
 func calculate_momentum_deceleration(speed_ratio: float) -> float:
 	# Clamp speed ratio to reasonable bounds
@@ -148,10 +175,12 @@ func calculate_momentum_deceleration(speed_ratio: float) -> float:
 	# If speed exceeds all intervals, use the highest tier
 	return momentum_intervals[-1].deceleration
 
+# Pickup system functions
 func pickup_item(item: Area2D):        ###
 	item.queue_free()
 	holding_item = true
 	item_spr.show()
+
 
 func drop_item():        ###
 	item_spr.hide()
@@ -160,20 +189,54 @@ func drop_item():        ###
 	get_parent().add_child(item)
 	holding_item = false
 
+
 func _on_pickup_range_area_entered(area: Area2D) -> void:
 	if area.is_in_group("revolver_group"):
 		items_in_range.append(area)
 		print(items_in_range)
+
 
 func _on_pickup_range_area_exited(area: Area2D) -> void:
 	if area.is_in_group("revolver_group"):
 		items_in_range.erase(area)
 		print(items_in_range)
 
+# Pickup item event listener
 func _input(event):
 	if event.is_action_pressed("P1_pickup"):
+		print("Pressed Pickup")
 		if holding_item:
 			drop_item()
 		else:
 			if !items_in_range.is_empty():
 				pickup_item(items_in_range.pick_random())
+	elif event.is_action_pressed("P1_fire"):
+	#	this function is a single shot for the revolver,
+		print("PEW PEW PEW")
+	#	1. Instantiate a bullet scene 
+		var temp_bullet = bullet.instantiate()
+	#	2. Add as child to a node
+		get_parent().add_child(temp_bullet)
+	#	3. Add bullet to array of all bullets
+		bullets_in_scene.append(temp_bullet)
+	#	4. Place at position of the revolver barrel 
+		temp_bullet.position = revolver_tip.position
+	#	5. Add velocity to bullet
+		##bullet.velocity.x += revolver_bullet_speed
+
+
+#func rifle_fire 
+#	this function is a single shot for the Rifle,
+#	
+#	1. Instantiate a bullet scene 
+#	2. Add as child to a node
+#	3. Add bullet to array of all bullets
+#	4. Place at position of the revolver barrel 
+#	5. Add velocity to bullet
+
+
+func bullet_despawn():
+#	Remove bullet from bullet array
+	bullets_in_scene.pop_back()
+	
+#	bullet.queue_free() -> delete the node

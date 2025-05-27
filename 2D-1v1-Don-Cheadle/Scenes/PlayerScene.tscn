@@ -223,5 +223,8 @@ shape = SubResource("RectangleShape2D_xwiga")
 position = Vector2(26, -11)
 texture = ExtResource("5_6nwty")
 
+[node name="gun_tip" type="Marker2D" parent="."]
+position = Vector2(28, -2)
+
 [connection signal="area_entered" from="pickup_range" to="." method="_on_pickup_range_area_entered"]
 [connection signal="area_exited" from="pickup_range" to="." method="_on_pickup_range_area_exited"]
