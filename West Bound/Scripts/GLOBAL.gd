@@ -2,8 +2,13 @@ extends Node2D
 
 	# Bullet System
 var bullets_in_scene: Array = [] 
+var revolver_damage = 50
 
+	# Player 1
 var P1_direction = 0
+var P1_HP = 100
+
+	# Player 2
 
 	# Player 1 movement
 func _process(delta: float) -> void:
@@ -16,7 +21,7 @@ func _process(delta: float) -> void:
 	elif direction > 0:
 		P1_direction = 1
 	
-	print(P1_direction)
+	#print(P1_direction)
 
 # Define general classes such as item and entity
 # Manage loading levels

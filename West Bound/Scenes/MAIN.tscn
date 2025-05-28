@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxrqbgc1igt68"]
+[gd_scene load_steps=7 format=3 uid="uid://dxrqbgc1igt68"]
 
 [ext_resource type="Script" uid="uid://bcu0gdv1kuqjx" path="res://Scripts/GLOBAL.gd" id="1_5c1w6"]
 [ext_resource type="PackedScene" uid="uid://b26b6vpjfeouj" path="res://Scenes/Revolver.tscn" id="4_5c1w6"]
 [ext_resource type="PackedScene" uid="uid://bs04jfikm7vb6" path="res://Scenes/GunSpawner.tscn" id="4_783md"]
 [ext_resource type="PackedScene" uid="uid://bcgegtsnnb4gq" path="res://Scenes/PlayerScene.tscn" id="5_5c1w6"]
 [ext_resource type="PackedScene" uid="uid://dgck3inrsfhpv" path="res://test2.tscn" id="5_125yk"]
+[ext_resource type="PackedScene" uid="uid://btxsekug8xf3r" path="res://Scenes/player2.tscn" id="6_125yk"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_5c1w6")
@@ -25,5 +26,11 @@ position = Vector2(-124, -66)
 [node name="Node2D2" parent="." instance=ExtResource("5_125yk")]
 position = Vector2(-57, 2)
 
-[node name="Revolver" parent="." instance=ExtResource("4_5c1w6")]
+[node name="Revolver" parent="." groups=["revolver_group"] instance=ExtResource("4_5c1w6")]
 position = Vector2(-59, -30)
+
+[node name="Player2" parent="." instance=ExtResource("6_125yk")]
+position = Vector2(136, -39)
+
+[node name="Player3" parent="." instance=ExtResource("5_5c1w6")]
+position = Vector2(35, -60)

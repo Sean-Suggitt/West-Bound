@@ -61,55 +61,22 @@ func _ready() -> void:
 # TODO: move all the constant update logic that is not
 #       related to physics from _physics_process() into _process()
 func _process(delta: float) -> void:
-	pass
+	if Global.P1_HP <= 0:
+		queue_free()
 
 
 func _physics_process(delta: float) -> void:
-	
-	# Track ground state for coyote time
 	var currently_on_floor = is_on_floor()
 	
-	# Shooting
+		# Shooting
 	if Input.is_action_just_pressed("P1_fire"):
 		shoot()
-	
-	# Update coyote timer
-	if currently_on_floor:
-		coyote_timer = 0.0  # Reset when on ground
-	elif was_on_floor and not currently_on_floor:
-		coyote_timer = 0.0  # Just left ground, start coyote time
-	else:
-		coyote_timer += delta  # Count
-	
-	was_on_floor = currently_on_floor
-	
-	# Update jump buffer timer (countdown)
-	if jump_buffer_timer > 0:
-		jump_buffer_timer -= delta
+		
+	jump_handler(delta, currently_on_floor)
 	
 	# Add gravity
 	if not currently_on_floor:
 		velocity += get_gravity() * delta
-	# Enhanced jump logic with coyote time and jump buffering
-	var can_coyote_jump = coyote_timer <= coyote_time
-	var has_jump_buffered = jump_buffer_timer > 0
-	
-	# Handle jump input - store it in buffer
-	if Input.is_action_just_pressed("P1_jump"):
-		jump_buffer_timer = jump_buffer_time  # Store jump input for buffering
-	
-	# Execute jump if conditions are met
-	if has_jump_buffered and (currently_on_floor or can_coyote_jump):
-		velocity.y = JUMP_VELOCITY
-		jump_buffer_timer = 0.0  # Consume the buffered jump
-		coyote_timer = coyote_time + 1  # Prevent multiple coyote jumps
-		
-		# Optional: Add visual/audio feedback here
-		# print("Jump executed! Ground: ", currently_on_floor, " Coyote: ", can_coyote_jump)
-	
-	# Variable jump height
-	if Input.is_action_just_released("P1_jump") and velocity.y < 0:
-		velocity.y *= decelerate_on_jump_release
 	
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("P1_left", "P1_right")   # returns -1(left) 1(right) 0(neither)
@@ -154,6 +121,45 @@ func _physics_process(delta: float) -> void:
 #--------------------------------------------------------------------
 #----------------------NON-ENGINE FUNCTIONS------------------------------
 #--------------------------------------------------------------------
+
+func jump_handler(delta: float, currently_on_floor: bool):
+		# Track ground state for coyote time
+
+	
+	# Update coyote timer
+	if currently_on_floor:
+		coyote_timer = 0.0  # Reset when on ground
+	elif was_on_floor and not currently_on_floor:
+		coyote_timer = 0.0  # Just left ground, start coyote time
+	else:
+		coyote_timer += delta  # Count
+	
+	was_on_floor = currently_on_floor
+	
+	# Update jump buffer timer (countdown)
+	if jump_buffer_timer > 0:
+		jump_buffer_timer -= delta
+		# Enhanced jump logic with coyote time and jump buffering
+	var can_coyote_jump = coyote_timer <= coyote_time
+	var has_jump_buffered = jump_buffer_timer > 0
+	
+		
+	# Handle jump input - store it in buffer
+	if Input.is_action_just_pressed("P1_jump"):
+		jump_buffer_timer = jump_buffer_time  # Store jump input for buffering
+	
+	# Execute jump if conditions are met
+	if has_jump_buffered and (currently_on_floor or can_coyote_jump):
+		velocity.y = JUMP_VELOCITY
+		jump_buffer_timer = 0.0  # Consume the buffered jump
+		coyote_timer = coyote_time + 1  # Prevent multiple coyote jumps
+		
+		# Optional: Add visual/audio feedback here
+		# print("Jump executed! Ground: ", currently_on_floor, " Coyote: ", can_coyote_jump)
+	
+	# Variable jump height
+	if Input.is_action_just_released("P1_jump") and velocity.y < 0:
+		velocity.y *= decelerate_on_jump_release
 
 # Calculate momentum-based air deceleration using smooth interpolation
 func calculate_momentum_deceleration(speed_ratio: float) -> float:
@@ -213,7 +219,7 @@ func _input(event):
 			if !items_in_range.is_empty():
 				pickup_item(items_in_range.pick_random())
 
-
+# Shooting
 func shoot():
 	if holding_item:
 		var temp_bullet = bullet.instantiate()
@@ -221,3 +227,12 @@ func shoot():
 		#temp_bullet.velocity = temp_bullet.velocity * Global.P1_direction
 		Global.bullets_in_scene.push_front(temp_bullet)
 		get_parent().add_child(temp_bullet)
+		print(Global.P1_HP)
+
+# Health and damage
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	print(Global.P1_HP)
+	if body.is_in_group("revolver_bullet"):
+		Global.P1_HP -= Global.revolver_damage
+		print(Global.P1_HP)
