@@ -112,7 +112,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y *= decelerate_on_jump_release
 	
 	# Get the input direction and handle the movement/deceleration.
-	var direction := Input.get_axis("P1_left", "P1_right") # returns -1(left) 1(right) 0(neither)
+	var direction := Input.get_axis("P1_left", "P1_right")   # returns -1(left) 1(right) 0(neither)
 	
 	if currently_on_floor:
 		# Ground movement
@@ -121,13 +121,14 @@ func _physics_process(delta: float) -> void:
 			sprite.flip_h = direction < 0
 			item_spr.flip_h = direction < 0
 			item_spr.position.x = abs(item_spr.position.x) * direction
+			revolver_tip.position.x = abs(revolver_tip.position.x) * direction
 			drop_pos = Vector2(direction * 12, 13)
 			sprite.play("run")
 			
 			# Calculate smooth momentum-based air deceleration
 			var current_speed_ratio = abs(velocity.x) / speed
 			air_deceleration = calculate_momentum_deceleration(current_speed_ratio)
-			print(air_deceleration)
+			#print(air_deceleration)
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed * deceleration)
 			sprite.play("idle")
@@ -217,5 +218,6 @@ func shoot():
 	if holding_item:
 		var temp_bullet = bullet.instantiate()
 		temp_bullet.global_position = revolver_tip.global_position
+		#temp_bullet.velocity = temp_bullet.velocity * Global.P1_direction
 		Global.bullets_in_scene.push_front(temp_bullet)
 		get_parent().add_child(temp_bullet)

@@ -4,6 +4,7 @@ res://Scenes/bullet.tscn
 res://Scenes/PlayerScene.tscn
 res://Scenes/Revolver.tscn
 res://test2.tscn
-res://Scripts/PlayerScript.gd
-res://Scripts/Bullet.gd
 res://Scenes/TESTLEVEL_2.tscn
+res://Scripts/Bullet.gd
+res://Scripts/PlayerScript.gd
+res://Scripts/GLOBAL.gd

@@ -2,8 +2,21 @@ extends Node2D
 
 	# Bullet System
 var bullets_in_scene: Array = [] 
-var revolver_bullet_speed = 1000
-var bullet_despawn_timer = 0
+
+var P1_direction = 0
+
+	# Player 1 movement
+func _process(delta: float) -> void:
+	
+	# get direction P1 is facing globally available
+	var direction = Input.get_axis("P1_left", "P1_right")
+	#print(direction)
+	if direction < 0:
+		P1_direction = -1
+	elif direction > 0:
+		P1_direction = 1
+	
+	print(P1_direction)
 
 # Define general classes such as item and entity
 # Manage loading levels
