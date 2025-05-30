@@ -8,16 +8,16 @@ size = Vector2(10, 6)
 
 [node name="Bullet" type="CharacterBody2D" groups=["revolver_bullet"]]
 collision_layer = 16
-collision_mask = 3
+collision_mask = 65
 script = ExtResource("1_oduel")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 texture = ExtResource("2_ycag2")
 
 [node name="Hit detection" type="Area2D" parent="." groups=["revolver_bullet"]]
 collision_layer = 16
-collision_mask = 19
+collision_mask = 83
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hit detection"]
 shape = SubResource("RectangleShape2D_oduel")

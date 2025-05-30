@@ -1,11 +1,8 @@
-res://Scenes/PlayerScene.tscn
-res://TILEMAPS/TILEMAP_1.tres
-res://Scripts/PlayerScript.gd
 res://Scenes/MAIN.tscn
-res://Scenes/bullet.tscn
-res://Scenes/Revolver.tscn
-res://test2.tscn
+res://TILEMAPS/TILEMAP_1.tres
+res://Scenes/PlayerScene.tscn
 res://Scenes/TESTLEVEL_2.tscn
-res://Scripts/GLOBAL.gd
+res://Scenes/bullet.tscn
 res://Scenes/player2.tscn
-res://Scripts/Bullet.gd
+res://Scripts/PlayerScript.gd
+res://Scenes/bullet_damage_register_test.tscn

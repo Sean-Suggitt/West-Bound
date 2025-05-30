@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bcgegtsnnb4gq"]
+[gd_scene load_steps=42 format=3 uid="uid://bcgegtsnnb4gq"]
 
 [ext_resource type="Script" uid="uid://bb2ufopx6shlm" path="res://Scripts/PlayerScript.gd" id="1_6nwty"]
 [ext_resource type="Texture2D" uid="uid://bwojj76ui3631" path="res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Idle (32x32).png" id="2_6nwty"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dqxe77wtvpj2b" path="res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Jump (32x32).png" id="3_uuggy"]
 [ext_resource type="Texture2D" uid="uid://jy45uyjvwseu" path="res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Run (32x32).png" id="4_tr25n"]
 [ext_resource type="Texture2D" uid="uid://drld783ltswdh" path="res://Images/revolver.png" id="5_6nwty"]
+[ext_resource type="AudioStream" uid="uid://c3quiiboppqsr" path="res://Sounds/gun_shot_1.wav" id="7_tr25n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0hol4"]
 atlas = ExtResource("2_6nwty")
@@ -250,7 +251,7 @@ size = Vector2(15, 24.1225)
 size = Vector2(52, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uuggy"]
-size = Vector2(20, 25)
+size = Vector2(20, 26)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
@@ -269,14 +270,13 @@ position = Vector2(9.91699, 8.95665)
 scale = Vector2(0.991699, 0.995183)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0.5, 0.0612502)
 shape = SubResource("RectangleShape2D_0e48y")
 
 [node name="pickup_range" type="Area2D" parent="."]
 visible = false
 collision_layer = 16
-collision_mask = 24
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pickup_range"]
 position = Vector2(7, 0)
@@ -294,8 +294,12 @@ collision_layer = 64
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(1, -0.5)
+position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_uuggy")
+
+[node name="revolver_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_tr25n")
+volume_db = -6.315
 
 [connection signal="area_entered" from="pickup_range" to="." method="_on_pickup_range_area_entered"]
 [connection signal="area_exited" from="pickup_range" to="." method="_on_pickup_range_area_exited"]

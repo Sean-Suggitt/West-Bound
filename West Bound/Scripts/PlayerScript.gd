@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var item_spr = $Revolver_Sprite              ##
 @onready var revolver_tip = $gun_tip
 @onready var sprite = $AniPlayerSpr    # Get the animated sprite node
+@onready var rev_sound = $revolver_sound
 
 var bullet = preload("res://Scenes/bullet.tscn")
 
@@ -227,7 +228,8 @@ func shoot():
 		#temp_bullet.velocity = temp_bullet.velocity * Global.P1_direction
 		Global.bullets_in_scene.push_front(temp_bullet)
 		get_parent().add_child(temp_bullet)
-		print(Global.P1_HP)
+		rev_sound.play()
+		#print(Global.P1_HP)
 
 # Health and damage
 
