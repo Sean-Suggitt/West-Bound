@@ -24,6 +24,8 @@ Global="*res://Scripts/GLOBAL.gd"
 revolver_group=""
 revolver_bullet=""
 player=""
+Player1Hurtbox=""
+World=""
 
 [input]
 
@@ -72,8 +74,9 @@ P1_fire={
 
 2d_physics/layer_1="World"
 2d_physics/layer_2="Players"
-2d_physics/layer_5="Bullet"
+2d_physics/layer_5="Bullet_collision"
 2d_physics/layer_7="Player 1 hurtbox"
+2d_physics/layer_8="Pickup range"
 
 [rendering]
 

@@ -275,7 +275,7 @@ shape = SubResource("RectangleShape2D_0e48y")
 
 [node name="pickup_range" type="Area2D" parent="."]
 visible = false
-collision_layer = 16
+collision_layer = 128
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pickup_range"]
@@ -289,12 +289,11 @@ texture = ExtResource("5_6nwty")
 [node name="gun_tip" type="Node2D" parent="."]
 position = Vector2(28, -2)
 
-[node name="Hurtbox" type="Area2D" parent="." groups=["player"]]
+[node name="Hurtbox" type="Area2D" parent="." groups=["Player1Hurtbox"]]
 collision_layer = 64
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_uuggy")
 
 [node name="revolver_sound" type="AudioStreamPlayer2D" parent="."]
@@ -303,4 +302,3 @@ volume_db = -6.315
 
 [connection signal="area_entered" from="pickup_range" to="." method="_on_pickup_range_area_entered"]
 [connection signal="area_exited" from="pickup_range" to="." method="_on_pickup_range_area_exited"]
-[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

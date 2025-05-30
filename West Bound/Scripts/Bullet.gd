@@ -14,6 +14,17 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	Global.bullets_in_scene.pop_back()
-	queue_free()
+func _on_world_collision_detection_body_entered(body: Node2D) -> void:
+	if body.is_in_group("World"):
+		Global.bullets_in_scene.pop_back()
+		queue_free()
+		print("bullet hit wall")
+
+
+func _on_player_collision_detection_area_entered(area: Area2D) -> void:
+	print("cccooolided")
+	if area.is_in_group("Player1Hurtbox"):
+		Global.P1_HP -= Global.revolver_damage
+		Global.bullets_in_scene.pop_back()
+		queue_free()
+		print(Global.P1_HP)
