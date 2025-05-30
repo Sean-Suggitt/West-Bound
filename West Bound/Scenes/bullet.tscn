@@ -1,25 +1,42 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3sy2apiy4tra"]
+[gd_scene load_steps=6 format=3 uid="uid://c3sy2apiy4tra"]
 
 [ext_resource type="Script" uid="uid://bqxhgvo3oyxp7" path="res://Scripts/Bullet.gd" id="1_oduel"]
 [ext_resource type="Texture2D" uid="uid://de4qg05484nlh" path="res://Images/bullet.png" id="2_ycag2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oduel"]
-size = Vector2(10, 6)
+size = Vector2(4, 2)
 
-[node name="Bullet" type="CharacterBody2D" groups=["revolver_bullet"]]
-collision_layer = 16
-collision_mask = 65
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycag2"]
+size = Vector2(6, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6afsh"]
+size = Vector2(10, 9)
+
+[node name="Bullet" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_oduel")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
 texture = ExtResource("2_ycag2")
 
-[node name="Hit detection" type="Area2D" parent="." groups=["revolver_bullet"]]
-collision_layer = 16
-collision_mask = 83
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit detection"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_oduel")
 
-[connection signal="body_entered" from="Hit detection" to="." method="_on_area_2d_body_entered"]
+[node name="WorldCollisionDetection" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldCollisionDetection"]
+shape = SubResource("RectangleShape2D_ycag2")
+
+[node name="PlayerCollisionDetection" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollisionDetection"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_6afsh")
+
+[connection signal="body_entered" from="WorldCollisionDetection" to="." method="_on_world_collision_detection_body_entered"]
+[connection signal="area_entered" from="PlayerCollisionDetection" to="." method="_on_player_collision_detection_area_entered"]

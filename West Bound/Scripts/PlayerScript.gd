@@ -222,6 +222,7 @@ func _input(event):
 
 # Shooting
 func shoot():
+	print("shot")
 	if holding_item:
 		var temp_bullet = bullet.instantiate()
 		temp_bullet.global_position = revolver_tip.global_position
@@ -230,11 +231,3 @@ func shoot():
 		get_parent().add_child(temp_bullet)
 		rev_sound.play()
 		#print(Global.P1_HP)
-
-# Health and damage
-
-func _on_hurtbox_body_entered(body: Node2D) -> void:
-	print(Global.P1_HP)
-	if body.is_in_group("revolver_bullet"):
-		Global.P1_HP -= Global.revolver_damage
-		print(Global.P1_HP)
