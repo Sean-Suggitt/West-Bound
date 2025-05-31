@@ -1,13 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxrqbgc1igt68"]
+[gd_scene load_steps=8 format=3 uid="uid://dxrqbgc1igt68"]
 
 [ext_resource type="Script" uid="uid://bcu0gdv1kuqjx" path="res://Scripts/GLOBAL.gd" id="1_5c1w6"]
 [ext_resource type="PackedScene" uid="uid://b26b6vpjfeouj" path="res://Scenes/Revolver.tscn" id="4_5c1w6"]
 [ext_resource type="PackedScene" uid="uid://bs04jfikm7vb6" path="res://Scenes/GunSpawner.tscn" id="4_783md"]
 [ext_resource type="PackedScene" uid="uid://bcgegtsnnb4gq" path="res://Scenes/PlayerScene.tscn" id="5_5c1w6"]
-[ext_resource type="PackedScene" uid="uid://dgck3inrsfhpv" path="res://test2.tscn" id="5_125yk"]
+[ext_resource type="PackedScene" uid="uid://dgck3inrsfhpv" path="res://Scenes/test2.tscn" id="5_125yk"]
 [ext_resource type="PackedScene" uid="uid://d16fp4pbjepes" path="res://Scenes/bullet_damage_register_test.tscn" id="6_125yk"]
+[ext_resource type="PackedScene" uid="uid://cltdh4fw2k5dg" path="res://Scenes/PlayerScene_P2.tscn" id="7_kjvde"]
 
 [node name="Main" type="Node2D"]
+position = Vector2(-2, 3)
 script = ExtResource("1_5c1w6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -24,7 +26,7 @@ position = Vector2(289, -78)
 position = Vector2(-107, -64)
 
 [node name="Node2D2" parent="." instance=ExtResource("5_125yk")]
-position = Vector2(-57, 2)
+position = Vector2(-54, 0)
 
 [node name="Revolver" parent="." groups=["revolver_group"] instance=ExtResource("4_5c1w6")]
 position = Vector2(-61, -22)
@@ -32,5 +34,12 @@ position = Vector2(-61, -22)
 [node name="Node2D" parent="." instance=ExtResource("6_125yk")]
 position = Vector2(173, -27)
 
-[node name="Player2" parent="." instance=ExtResource("5_5c1w6")]
-position = Vector2(111, -35)
+[node name="Player2" parent="." instance=ExtResource("7_kjvde")]
+position = Vector2(51, -30)
+player_id = "P2"
+
+[node name="SpawnP2" type="Marker2D" parent="." groups=["spawn_P2"]]
+position = Vector2(109, -24)
+
+[node name="SpawnP1" type="Marker2D" parent="." groups=["spawn_P1"]]
+position = Vector2(-105, -24)
