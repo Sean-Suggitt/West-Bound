@@ -16,6 +16,8 @@ extends CharacterBody2D
 	"pickup": "P1_pickup"
 }
 
+signal player_died(player_id)
+
 # Movement configuration
 @export_group("Movement")
 @export var speed: float = 200.0
@@ -117,6 +119,23 @@ func _ready() -> void:
 			pickup_range.area_entered.connect(_on_pickup_range_area_entered)
 		if not pickup_range.area_exited.is_connected(_on_pickup_range_area_exited):
 			pickup_range.area_exited.connect(_on_pickup_range_area_exited)
+
+	#Move to spawn point on game start
+	_move_to_spawn_point()
+	
+func _move_to_spawn_point() -> void:
+	await get_tree().process_frame
+	var spawn_points = get_tree().get_nodes_in_group("spawn_" + player_id)
+		
+	if spawn_points.size() > 0:
+		global_position = spawn_points[0].global_position
+	else:
+		#fallback positions if spawn points arent found
+		if player_id == "P1":
+			global_position = Vector2(-105, -64)
+		elif player_id == "P2":
+			global_position = Vector2(51, -30) 
+			
 
 func _setup_node_references() -> void:
 	# Get sprite node (try multiple common names)
@@ -317,7 +336,7 @@ func _shoot() -> void:
 
 func _handle_death() -> void:
 	is_dead = true
-	
+	emit_signal("player_died", player_id)
 	# Visual feedback
 	if sprite:
 		if sprite.sprite_frames and sprite.sprite_frames.has_animation("death"):

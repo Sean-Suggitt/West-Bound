@@ -10,3 +10,4 @@ res://Scripts/Bullet.gd
 res://Scripts/GLOBAL.gd
 res://Scripts/PlayerScript.gd
 res://Scripts/player_2.gd
+res://Scripts/GameManager.gd

@@ -1,20 +1,53 @@
-[gd_scene load_steps=42 format=3 uid="uid://bcgegtsnnb4gq"]
+[gd_scene load_steps=44 format=3 uid="uid://bcgegtsnnb4gq"]
 
 [ext_resource type="Script" uid="uid://bb2ufopx6shlm" path="res://Scripts/PlayerScript.gd" id="1_6nwty"]
 [ext_resource type="Texture2D" uid="uid://bwojj76ui3631" path="res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Idle (32x32).png" id="2_6nwty"]
+[ext_resource type="Texture2D" uid="uid://bcfu8jian54pi" path="res://Images/Del_Rato_Shoot_animation-Sheet.png" id="2_aw52p"]
 [ext_resource type="Texture2D" uid="uid://dia1pqfw0g2vx" path="res://Images/SpriteIdle1-Sheet.png" id="2_uuggy"]
 [ext_resource type="Texture2D" uid="uid://dqxe77wtvpj2b" path="res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Jump (32x32).png" id="3_uuggy"]
 [ext_resource type="Texture2D" uid="uid://jy45uyjvwseu" path="res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Run (32x32).png" id="4_tr25n"]
 [ext_resource type="Texture2D" uid="uid://drld783ltswdh" path="res://Images/revolver.png" id="5_6nwty"]
 [ext_resource type="AudioStream" uid="uid://c3quiiboppqsr" path="res://Sounds/gun_shot_1.wav" id="7_tr25n"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0hol4"]
-atlas = ExtResource("2_6nwty")
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxi7d"]
+atlas = ExtResource("2_aw52p")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tr25n"]
+atlas = ExtResource("2_uuggy")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw52p"]
+atlas = ExtResource("2_uuggy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1y1l"]
+atlas = ExtResource("2_uuggy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwh6i"]
+atlas = ExtResource("2_uuggy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8odu0"]
+atlas = ExtResource("2_uuggy")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8h68a"]
+atlas = ExtResource("2_uuggy")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r53dp"]
+atlas = ExtResource("2_uuggy")
+region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q6r6c"]
 atlas = ExtResource("2_6nwty")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hol4"]
+atlas = ExtResource("2_6nwty")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kdubu"]
 atlas = ExtResource("2_6nwty")
@@ -51,34 +84,6 @@ region = Rect2(288, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_nr8wp"]
 atlas = ExtResource("2_6nwty")
 region = Rect2(320, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tr25n"]
-atlas = ExtResource("2_uuggy")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aw52p"]
-atlas = ExtResource("2_uuggy")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x1y1l"]
-atlas = ExtResource("2_uuggy")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kwh6i"]
-atlas = ExtResource("2_uuggy")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8odu0"]
-atlas = ExtResource("2_uuggy")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8h68a"]
-atlas = ExtResource("2_uuggy")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r53dp"]
-atlas = ExtResource("2_uuggy")
-region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2bti"]
 atlas = ExtResource("4_tr25n")
@@ -132,37 +137,7 @@ region = Rect2(352, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0hol4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q6r6c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kdubu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d21ai")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rj586")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4d7sh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ir8iy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hqns4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x0ka3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0h7mo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nr8wp")
+"texture": SubResource("AtlasTexture_nxi7d")
 }],
 "loop": true,
 "name": &"idle",
@@ -193,6 +168,44 @@ animations = [{
 "loop": true,
 "name": &"idle22",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6r6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hol4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdubu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d21ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rj586")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d7sh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ir8iy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqns4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0ka3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0h7mo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nr8wp")
+}],
+"loop": true,
+"name": &"idle_1",
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -242,6 +255,11 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 20.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"shoot_pistol",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
@@ -259,11 +277,10 @@ collision_mask = 3
 script = ExtResource("1_6nwty")
 
 [node name="AniPlayerSpr" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(20, -19)
 scale = Vector2(1.00837, 1.00484)
 sprite_frames = SubResource("SpriteFrames_1fr6y")
 animation = &"idle"
-frame_progress = 0.685291
 
 [node name="GunPoint" type="Marker2D" parent="AniPlayerSpr"]
 position = Vector2(9.91699, 8.95665)
