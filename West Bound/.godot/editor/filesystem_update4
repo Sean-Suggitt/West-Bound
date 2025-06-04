@@ -4,8 +4,13 @@ res://Scenes/PlayerScene.tscn
 res://Scenes/bullet.tscn
 res://Scenes/bullet_damage_register_test.tscn
 res://Scenes/player2.tscn
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
 res://test2.tscn
 res://Scripts/Bullet.gd
 >>>>>>> 0e580889575a76364ccafc6727a09118c120ecfb
+=======
+res://Scenes/test2.tscn
+res://Scenes/PlayerScene_P2.tscn
+>>>>>>> Stashed changes
