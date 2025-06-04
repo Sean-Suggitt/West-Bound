@@ -32,5 +32,16 @@ position = Vector2(-61, -22)
 [node name="Node2D" parent="." instance=ExtResource("6_125yk")]
 position = Vector2(173, -27)
 
+<<<<<<< Updated upstream
 [node name="Player2" parent="." instance=ExtResource("5_5c1w6")]
 position = Vector2(111, -35)
+=======
+[node name="Player2" parent="." instance=ExtResource("7_kjvde")]
+position = Vector2(51, -30)
+
+[node name="SpawnP2" type="Marker2D" parent="." groups=["spawn_P2"]]
+position = Vector2(109, -24)
+
+[node name="SpawnP1" type="Marker2D" parent="." groups=["spawn_P1"]]
+position = Vector2(-105, -24)
+>>>>>>> Stashed changes
