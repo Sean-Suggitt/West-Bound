@@ -1,6 +1,7 @@
+TileMapLayer
+Node2D
 Timer
 ColorRect
-Node2D
 Marker2D
 CollisionShape2D
 Area2D
