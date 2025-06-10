@@ -1,7 +1,5 @@
 extends Node2D
 
-# Item spawn tracking
-var item_spawn_positions: Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,10 +14,6 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 var round_active = true
-
-# Find all revolvers in the scene and store their positions
-#var revolvers = get_tree().get_nodes_in_group("revolver_group")
-
 
 func _on_player_died(player_id):
 	print(player_id)
@@ -44,19 +38,6 @@ func _reset_round():
 	var player1 = get_parent().get_node("Player")
 	var player2 = get_parent().get_node("Player2")
 	
-	# Call the new reset method on both players to handle item clearing
-	if player1.has_method("reset_for_new_round"):
-		print("it has a method")
-		player1.reset_for_new_round()
-	if player2.has_method("reset_for_new_round"):
-		print("it also has a method")
-		player2.reset_for_new_round()
-	
-	
-	# Respawn revolvers at their original positions
-	await get_tree().process_frame  # Wait a frame to ensure old revolvers are freed
-	#_respawn_items_at_spawn_positions()
-	
 	#Move players to spawn points
 	var spawn_p1 = get_tree().get_nodes_in_group("spawn_P1")
 	var spawn_p2 = get_tree().get_nodes_in_group("spawn_P2")
@@ -78,16 +59,6 @@ func _reset_round():
 	await get_tree().create_timer(0.5).timeout
 	$FadeRect.hide()
 	round_active = true
-
-#func _respawn_items_at_spawn_positions() -> void:
-	## Respawn all items at their original positions
-	#var revolver_scene = preload("res://Scenes/Revolver.tscn")
-	#print(revolver_scene)
-	#for spawn_data in item_spawn_positions:
-		#var new_revolver = revolver_scene.instantiate()
-		#new_revolver.position = spawn_data["position"]
-		#get_parent().add_child(new_revolver)
-		#print("Respawned revolver at: ", spawn_data["position"])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -425,53 +425,6 @@ func _on_pickup_range_area_exited(area: Area2D) -> void:
 		items_in_range.erase(area)
 		print(player_id, " items in range: ", items_in_range)
 
- #--------------------------------------------------------------------
-#----------------------- ROUND RESET FUNCTIONS ----------------------
-#--------------------------------------------------------------------
-
-# Public method for external round resets
-func reset_for_new_round() -> void:
-	"""Called by GameManager when a round resets. Handles clearing item state and other round-specific resets."""
-	
-	# Clear item holding state without dropping (items will respawn at their original positions)
-	if holding_item:
-		holding_item = false
-		if item_sprite:
-			item_sprite.hide()
-		var revolver = get_parent().get_node("Revolver")
-		revolver.queue_free()
-		var revolver2 = get_parent().get_node("Revolver2")
-		revolver2.queue_free()
-
-	# Instantiate two new revolvers at their original positions after clearing old ones
-	var revolver_instance_1 = revolver_scene.instantiate()
-	var revolver_instance_2 = revolver_scene.instantiate()
-	
-	#Set positions to the positions of the gun holders
-	var gun_holders = get_tree().get_nodes_in_group("GunHolders")
-	for i in range(gun_holders.size()):
-		print("Gun holder ", i, " position: ", gun_holders[i].global_position)
-	revolver_instance_1.position = gun_holders[0].global_position
-	revolver_instance_2.position = gun_holders[1].global_position
-
-	# Clear any items that might be in range
-	items_in_range.clear()
-	
-	# Reset visual state
-	if sprite:
-		sprite.modulate.a = 1.0
-		sprite.show()
-		sprite.play("idle")
-	
-	# Reset physics
-	velocity = Vector2.ZERO
-	is_dead = false
-	
-	# Re-enable collisions in case they were disabled
-	set_collision_layer_value(1, true)
-	if hurt_box:
-		hurt_box.set_deferred("monitoring", true)
-
 #--------------------------------------------------------------------
 #----------------------- LEGACY FUNCTIONS ---------------------------
 #--------------------------------------------------------------------

@@ -17,11 +17,11 @@ script = ExtResource("1_5c1w6")
 position = Vector2(0, -125)
 zoom = Vector2(1.2, 1.2)
 
-[node name="GunHolder" parent="." groups=["GunHolders"] instance=ExtResource("4_783md")]
+[node name="GunHolder" parent="." instance=ExtResource("4_783md")]
 position = Vector2(-50, -13)
 
-[node name="GunHolder2" parent="." groups=["GunHolders"] instance=ExtResource("4_783md")]
-position = Vector2(134, -15)
+[node name="GunHolder2" parent="." instance=ExtResource("4_783md")]
+position = Vector2(289, -78)
 
 [node name="Player" parent="." instance=ExtResource("5_5c1w6")]
 position = Vector2(-106, -61)
@@ -30,10 +30,7 @@ position = Vector2(-106, -61)
 position = Vector2(-54, 0)
 
 [node name="Revolver" parent="." groups=["revolver_group"] instance=ExtResource("4_5c1w6")]
-position = Vector2(-53, -22)
-
-[node name="Revolver2" parent="." groups=["revolver_group"] instance=ExtResource("4_5c1w6")]
-position = Vector2(132, -24)
+position = Vector2(-61, -22)
 
 [node name="Node2D" parent="." instance=ExtResource("6_125yk")]
 position = Vector2(173, -27)

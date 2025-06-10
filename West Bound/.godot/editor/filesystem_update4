@@ -6,4 +6,8 @@ res://Scenes/bullet_damage_register_test.tscn
 res://Scenes/player2.tscn
 res://Scenes/test2.tscn
 res://Scenes/PlayerScene_P2.tscn
+res://Scripts/Bullet.gd
+res://Scripts/GLOBAL.gd
 res://Scripts/PlayerScript.gd
+res://Scripts/player_2.gd
+res://Scripts/GameManager.gd
