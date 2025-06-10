@@ -166,7 +166,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 20.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -260,11 +260,14 @@ script = ExtResource("1_kysgo")
 player_id = "P2"
 
 [node name="AniPlayerSpr" type="AnimatedSprite2D" parent="."]
+<<<<<<< HEAD:West Bound/Scenes/PlayerScene.tscn
+position = Vector2(3.8147e-06, -3)
+=======
 position = Vector2(0, -4)
+>>>>>>> 880c2b41800450f72357ad101d390e287dd3bc61:West Bound/Scenes/Players/PlayerScene_P2.tscn
 scale = Vector2(1.00837, 1.00484)
 sprite_frames = SubResource("SpriteFrames_1fr6y")
-animation = &"idle"
-frame_progress = 0.685291
+animation = &"run"
 
 [node name="GunPoint" type="Marker2D" parent="AniPlayerSpr"]
 position = Vector2(9.91699, 8.95665)
@@ -300,6 +303,9 @@ shape = SubResource("RectangleShape2D_uuggy")
 [node name="revolver_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_xo4t5")
 volume_db = -6.315
+
+[node name="Roll_Timer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="area_entered" from="pickup_range" to="." method="_on_pickup_range_area_entered"]
 [connection signal="area_exited" from="pickup_range" to="." method="_on_pickup_range_area_exited"]

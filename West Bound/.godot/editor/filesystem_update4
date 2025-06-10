@@ -1,4 +1,6 @@
+res://Scenes/Levels/Cave Level.tscn
 res://Scenes/MAIN.tscn
+<<<<<<< HEAD
 res://TILEMAPS/TILEMAP_1.tres
 res://Scenes/PlayerScene.tscn
 res://Scenes/bullet.tscn
@@ -7,3 +9,10 @@ res://Scenes/player2.tscn
 res://Scenes/test2.tscn
 res://Scenes/PlayerScene_P2.tscn
 res://Scripts/PlayerScript.gd
+=======
+res://Scenes/test_combat_system.tscn
+res://Scenes/spawn_point_example.tscn
+res://Scripts/PlayerScript.gd
+res://Scenes/Players/PlayerScene.tscn
+res://Scenes/Players/PlayerScene_P2.tscn
+>>>>>>> 880c2b41800450f72357ad101d390e287dd3bc61

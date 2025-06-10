@@ -13,15 +13,19 @@ extends CharacterBody2D
 	"right": "P1_right", 
 	"jump": "P1_jump",
 	"fire": "P1_fire",
-	"pickup": "P1_pickup"
+	"pickup": "P1_pickup",
+	"roll": "P1_roll"
 }
 
 signal player_died(player_id)
 
 # Movement configuration
 @export_group("Movement")
-@export var speed: float = 200.0
-@export var jump_velocity: float = -400.0
+@export var speed: float = 150
+@export var jump_velocity: float = -300.0
+@export var roll_speed = 200
+@export var roll_duration = 0.3
+@export var roll_cooldown = 2
 @export var acceleration: float = 0.1
 @export var deceleration: float = 0.1
 @export var air_control_factor: float = 0.9
@@ -51,15 +55,23 @@ var gun_tip: Node2D
 var hurt_box: Area2D
 var pickup_range: Area2D
 var revolver_sound: AudioStreamPlayer2D
+var Roll_Timer: Timer
+var Roll_Cooldown_Timer: Timer
+
+
 
 # Resources
-var bullet_scene = preload("res://Scenes/bullet.tscn")
-var revolver_scene = preload("res://Scenes/Revolver.tscn")
+var bullet_scene = preload("res://Scenes/Items/bullet.tscn")
+var revolver_scene = preload("res://Scenes/Items/Revolver.tscn")
 
 # Item Pickup System
 var holding_item: bool = false
 var drop_pos: Vector2
 var items_in_range: Array = []
+
+# rolling 
+var is_rolling: bool = false
+var can_roll: bool = true
 
 # Jump state tracking
 var coyote_timer: float = 0.0
@@ -91,7 +103,8 @@ func _ready() -> void:
 			"right": "P2_right",
 			"jump": "P2_jump",
 			"fire": "P2_fire",
-			"pickup": "P2_pickup"
+			"pickup": "P2_pickup",
+			"roll": "P2_roll"
 		}
 	
 	# Get node references with proper error handling
@@ -139,6 +152,10 @@ func _move_to_spawn_point() -> void:
 
 func _setup_node_references() -> void:
 	# Get sprite node (try multiple common names)
+	
+	Roll_Timer = $Roll_Timer
+	Roll_Cooldown_Timer = $Roll_Cooldown_Timer
+	
 	if has_node("AniPlayerSpr"):
 		sprite = $AniPlayerSpr
 	elif has_node("AnimatedSprite2D"):
@@ -189,6 +206,14 @@ func _physics_process(delta: float) -> void:
 		
 	var currently_on_floor = is_on_floor()
 	
+	# dodge roll
+	if Input.is_action_just_pressed(input_map["roll"]):
+		_roll_start(roll_duration)
+		if _is_rolling():
+			velocity.x += roll_speed * Global.player_states[player_id]["direction"]
+		else: 
+			pass
+	
 	# Handle shooting
 	if Input.is_action_just_pressed(input_map["fire"]):
 		_shoot()
@@ -221,15 +246,17 @@ func _physics_process(delta: float) -> void:
 
 func _handle_movement(direction: float, on_floor: bool, delta: float) -> void:
 	if on_floor:
+		if _is_rolling():
+			sprite.play("roll")
 		# Ground movement
-		if direction:
+		elif direction:
 			velocity.x = move_toward(velocity.x, direction * speed, speed * acceleration)
 			_update_visuals(direction)
-			if sprite:
+			if sprite and !is_rolling:
 				sprite.play("run")
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed * deceleration)
-			if sprite:
+			if sprite and !is_rolling:
 				sprite.play("idle")
 	else:
 		# Air movement with momentum
@@ -244,7 +271,8 @@ func _handle_movement(direction: float, on_floor: bool, delta: float) -> void:
 		
 		# Play jump animation if available
 		if sprite and sprite.sprite_frames and sprite.sprite_frames.has_animation("jump"):
-			sprite.play("jump")
+			if !is_rolling:
+				sprite.play("jump")
 
 func _update_visuals(direction: float) -> void:
 	if sprite:
@@ -387,6 +415,42 @@ func _respawn() -> void:
 	# Reset physics
 	velocity = Vector2.ZERO
 
+#--------------------------------------------------------------------
+#---------------------- ROLLING FUNCTIONS ---------------------------
+#--------------------------------------------------------------------
+
+func _dodge_roll() -> void:
+	pass
+
+func _roll_start(duration: float) -> void:
+	if !_is_rolling() and is_on_floor() and can_roll:
+		
+		# disable hurtbox to creat I-frames
+		hurt_box.set_deferred("monitoring", false)
+		hurt_box.set_deferred("monitorable", false)
+		
+		# Set states
+		is_rolling = true
+		can_roll = false
+		
+		# Handle Timers
+		Roll_Timer.wait_time = duration
+		Roll_Cooldown_Timer.wait_time = roll_cooldown
+		Roll_Timer.start()
+		Roll_Cooldown_Timer.start()
+
+func _is_rolling():
+	return !Roll_Timer.is_stopped()
+	
+func _on_roll_timer_timeout() -> void:
+	hurt_box.set_deferred("monitoring", true)
+	hurt_box.set_deferred("monitorable", true)
+	is_rolling = false
+	
+func _on_roll_cooldown_timer_timeout() -> void:
+	can_roll = true
+	
+	
 #--------------------------------------------------------------------
 #---------------------- PICKUP FUNCTIONS ----------------------------
 #--------------------------------------------------------------------
