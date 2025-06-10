@@ -1,6 +1,7 @@
-res://Scenes/PlayerScene.tscn
-res://TILEMAPS/TILEMAP_1.tres
+res://Scenes/Levels/Cave Level.tscn
 res://Scenes/MAIN.tscn
-res://Scenes/PlayerScene_P2.tscn
-res://Scenes/Revolver.tscn
-res://Scenes/Level_1.tscn
+res://Scenes/test_combat_system.tscn
+res://Scenes/spawn_point_example.tscn
+res://Scripts/PlayerScript.gd
+res://Scenes/Players/PlayerScene.tscn
+res://Scenes/Players/PlayerScene_P2.tscn

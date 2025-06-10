@@ -300,5 +300,8 @@ shape = SubResource("RectangleShape2D_uuggy")
 stream = ExtResource("7_xo4t5")
 volume_db = -6.315
 
+[node name="Roll_Timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="area_entered" from="pickup_range" to="." method="_on_pickup_range_area_entered"]
 [connection signal="area_exited" from="pickup_range" to="." method="_on_pickup_range_area_exited"]
