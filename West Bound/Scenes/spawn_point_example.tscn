@@ -1,11 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://r3nq65becrm8"]
+[gd_scene load_steps=2 format=3]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(20, 20)
 
 [node name="SpawnPoints" type="Node2D"]
 
 [node name="SpawnP1" type="Marker2D" parent="." groups=["spawn_P1"]]
 position = Vector2(100, 300)
+
+[node name="SpawnP2" type="Marker2D" parent="." groups=["spawn_P2"]]
+position = Vector2(900, 300)
 
 [node name="VisualIndicatorP1" type="Area2D" parent="SpawnP1"]
 collision_layer = 0
@@ -13,9 +17,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnP1/VisualIndicatorP1"]
 shape = SubResource("RectangleShape2D_1")
-
-[node name="SpawnP2" type="Marker2D" parent="." groups=["spawn_P2"]]
-position = Vector2(900, 300)
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="VisualIndicatorP2" type="Area2D" parent="SpawnP2"]
 collision_layer = 0
@@ -23,4 +25,4 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnP2/VisualIndicatorP2"]
 shape = SubResource("RectangleShape2D_1")
-debug_color = Color(0.7, 0, 0.6, 0.42)
+debug_color = Color(0.7, 0, 0.6, 0.42) 

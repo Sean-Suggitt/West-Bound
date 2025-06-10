@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddbt6qmq5ywlp"]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="PackedScene" uid="uid://bcgegtsnnb4gq" path="res://Scenes/Players/PlayerScene.tscn" id="1_test"]
-[ext_resource type="Script" uid="uid://cfynhkvh4xal0" path="res://Scripts/HealthUI.gd" id="2_test"]
-[ext_resource type="PackedScene" uid="uid://b26b6vpjfeouj" path="res://Scenes/Items/Revolver.tscn" id="3_test"]
+[ext_resource type="PackedScene" uid="uid://bcgegtsnnb4gq" path="res://Scenes/PlayerScene.tscn" id="1_test"]
+[ext_resource type="Script" path="res://Scripts/HealthUI.gd" id="2_test"]
+[ext_resource type="PackedScene" path="res://Scenes/Revolver.tscn" id="3_test"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
 size = Vector2(1000, 50)
@@ -80,4 +80,4 @@ horizontal_alignment = 1
 position = Vector2(250, 500)
 
 [node name="Revolver2" parent="." instance=ExtResource("3_test")]
-position = Vector2(750, 500)
+position = Vector2(750, 500) 
