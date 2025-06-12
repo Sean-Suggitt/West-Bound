@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://drwk0devmmdb"]
 
-[ext_resource type="Texture2D" uid="uid://cb78gffkxcqio" path="res://Images/Map Backgrounds/bridge.png" id="1_wsim6"]
+[ext_resource type="Texture2D" uid="uid://cb78gffkxcqio" path="res://Images/Backgrounds/bridge.png" id="1_wsim6"]
 [ext_resource type="TileSet" uid="uid://ccf7gtqpv7klk" path="res://TILEMAPS/TILEMAP_1.tres" id="2_3t211"]
 
 [node name="Node2D" type="Node2D" groups=["World"]]

@@ -21,7 +21,8 @@ fill_from = Vector2(0.491453, 0.538462)
 script = ExtResource("1_5c1w6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.565, 1.565)
+position = Vector2(16, 16)
+zoom = Vector2(1.78, 1.78)
 
 [node name="GunHolder" parent="." instance=ExtResource("4_783md")]
 position = Vector2(168, 100)
@@ -71,5 +72,5 @@ energy = 0.42
 shadow_enabled = true
 
 [node name="Node2D" parent="." instance=ExtResource("7_1tvcf")]
-position = Vector2(-229, -155)
-scale = Vector2(0.52, 0.52)
+position = Vector2(-312, -168)
+scale = Vector2(0.57, 0.57)
