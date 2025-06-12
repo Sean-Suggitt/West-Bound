@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2jybokprkh2h"
-path="res://.godot/imported/canyon.png-2ad3e0104160b0b46ba93c08c09d63d7.ctex"
+uid="uid://dsuqwa8qh5ns7"
+path="res://.godot/imported/saloon.png-2ccaf94b6f0d429119d016bd751aac5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Map Backgrounds/canyon.png"
-dest_files=["res://.godot/imported/canyon.png-2ad3e0104160b0b46ba93c08c09d63d7.ctex"]
+source_file="res://Images/Backgrounds/saloon.png"
+dest_files=["res://.godot/imported/saloon.png-2ccaf94b6f0d429119d016bd751aac5b.ctex"]
 
 [params]
 

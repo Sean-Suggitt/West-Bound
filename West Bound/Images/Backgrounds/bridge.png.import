@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsuqwa8qh5ns7"
-path="res://.godot/imported/saloon.png-6c2c265e4b286c671b5acdd6ba6ad294.ctex"
+uid="uid://cb78gffkxcqio"
+path="res://.godot/imported/bridge.png-961399d0c56534330153b04538c3db07.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Map Backgrounds/saloon.png"
-dest_files=["res://.godot/imported/saloon.png-6c2c265e4b286c671b5acdd6ba6ad294.ctex"]
+source_file="res://Images/Backgrounds/bridge.png"
+dest_files=["res://.godot/imported/bridge.png-961399d0c56534330153b04538c3db07.ctex"]
 
 [params]
 
