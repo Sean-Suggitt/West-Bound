@@ -23,8 +23,11 @@ script = ExtResource("1_5c1w6")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.565, 1.565)
 
-[node name="GunHolder" parent="." instance=ExtResource("4_783md")]
+[node name="GunHolder" parent="." groups=["GunHolders"] instance=ExtResource("4_783md")]
 position = Vector2(168, 100)
+
+[node name="GunHolder2" parent="." groups=["GunHolders"] instance=ExtResource("4_783md")]
+position = Vector2(13, 71)
 
 [node name="Player" parent="." instance=ExtResource("5_5c1w6")]
 position = Vector2(-82, 58)
@@ -35,13 +38,10 @@ scale = Vector2(2.35938, 1.875)
 texture = SubResource("GradientTexture2D_1tvcf")
 
 [node name="Revolver" parent="." groups=["revolver_group"] instance=ExtResource("4_5c1w6")]
-position = Vector2(160, 96)
+position = Vector2(163, 94)
 
 [node name="Revolver2" parent="." groups=["revolver_group"] instance=ExtResource("4_5c1w6")]
-position = Vector2(36, 60)
-
-[node name="Revolver3" parent="." groups=["revolver_group"] instance=ExtResource("4_5c1w6")]
-position = Vector2(2, 62)
+position = Vector2(8, 64)
 
 [node name="Player2" parent="." instance=ExtResource("7_kjvde")]
 position = Vector2(174, -1)
@@ -58,6 +58,11 @@ position = Vector2(-101, 38)
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("8_1tvcf")
 
+[node name="FadeLight" type="DirectionalLight2D" parent="GameManager"]
+energy = 0.0
+blend_mode = 1
+shadow_enabled = true
+
 [node name="FadeRect" type="ColorRect" parent="GameManager"]
 visible = false
 modulate = Color(0, 0, 0, 1)
@@ -68,7 +73,3 @@ offset_bottom = 251.0
 color = Color(0, 0, 0, 1)
 
 [node name="Timer" type="Timer" parent="GameManager"]
-
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-energy = 0.42
-shadow_enabled = true
