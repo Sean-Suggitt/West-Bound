@@ -33,7 +33,7 @@ signal player_died(player_id)
 @export var air_friction: float = 145.0
 @export var terminal_velocity: float = 600.0
 @export var jump_cut_multiplier: float = 0.01  # Variable jump height
-
+@export var revolver_counter = 1
 # Combat configuration
 @export_group("Combat")
 @export var max_health: int = 100
@@ -488,6 +488,38 @@ func _on_pickup_range_area_exited(area: Area2D) -> void:
 	if area.is_in_group("revolver_group"):
 		items_in_range.erase(area)
 		print(player_id, " items in range: ", items_in_range)
+		
+#--------------------------------------------------------------------
+#----------------------- ROUND RESET FUNCTIONS ----------------------
+#--------------------------------------------------------------------
+
+# Public method for external round resets
+func reset_for_new_round() -> void:
+	"""Called by GameManager when a round resets. Handles clearing item state and other round-specific resets."""
+	
+	# Clear item holding state without dropping (items will respawn at their original positions)
+	if holding_item:
+		holding_item = false
+		if item_sprite:
+			item_sprite.hide()
+	# Clear any items that might be in range
+	items_in_range.clear()
+	
+	# Reset visual state
+	if sprite:
+		sprite.modulate.a = 1.0
+		sprite.show()
+		sprite.play("idle")
+	
+	# Reset physics
+	velocity = Vector2.ZERO
+	is_dead = false
+	
+	# Re-enable collisions in case they were disabled
+	set_collision_layer_value(1, true)
+	if hurt_box:
+		hurt_box.set_deferred("monitoring", true)
+
 
 #--------------------------------------------------------------------
 #----------------------- LEGACY FUNCTIONS ---------------------------
