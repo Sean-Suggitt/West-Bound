@@ -3,20 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://cb78gffkxcqio" path="res://Images/Map Backgrounds/bridge.png" id="1_wsim6"]
 [ext_resource type="TileSet" uid="uid://ccf7gtqpv7klk" path="res://TILEMAPS/TILEMAP_1.tres" id="2_3t211"]
 
-[node name="Node2D" type="Node2D"]
-
-[node name="ColorRect" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(1152, 648)
-offset_top = -3.05176e-05
-offset_right = 1152.0
-offset_bottom = 648.0
+[node name="Node2D" type="Node2D" groups=["World"]]
 
 [node name="Bridge" type="Sprite2D" parent="."]
+z_index = -1
 position = Vector2(576, 342)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_wsim6")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=["World"]]
 position = Vector2(0, -1)
 tile_set = ExtResource("2_3t211")
 format = 2

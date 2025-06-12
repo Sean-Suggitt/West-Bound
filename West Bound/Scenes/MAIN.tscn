@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b26b6vpjfeouj" path="res://Scenes/Items/Revolver.tscn" id="4_5c1w6"]
 [ext_resource type="PackedScene" uid="uid://bs04jfikm7vb6" path="res://Scenes/Items/GunSpawner.tscn" id="4_783md"]
 [ext_resource type="PackedScene" uid="uid://bcgegtsnnb4gq" path="res://Scenes/Players/PlayerScene.tscn" id="5_5c1w6"]
-[ext_resource type="PackedScene" uid="uid://bpjqufsdcri7i" path="res://Scenes/Levels/Cave Level.tscn" id="7_1tvcf"]
+[ext_resource type="PackedScene" uid="uid://drwk0devmmdb" path="res://Scenes/Map3_v1.tscn" id="7_1tvcf"]
 [ext_resource type="PackedScene" uid="uid://cltdh4fw2k5dg" path="res://Scenes/Players/PlayerScene_P2.tscn" id="7_kjvde"]
 [ext_resource type="Script" uid="uid://d25lsmv776f5s" path="res://Scripts/GameManager.gd" id="8_1tvcf"]
 
@@ -52,9 +52,6 @@ position = Vector2(206, 8)
 [node name="SpawnP1" type="Marker2D" parent="." groups=["spawn_P1"]]
 position = Vector2(-132, 74)
 
-[node name="Level Root" parent="." instance=ExtResource("7_1tvcf")]
-position = Vector2(-101, 38)
-
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("8_1tvcf")
 
@@ -72,3 +69,7 @@ color = Color(0, 0, 0, 1)
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.42
 shadow_enabled = true
+
+[node name="Node2D" parent="." instance=ExtResource("7_1tvcf")]
+position = Vector2(-229, -155)
+scale = Vector2(0.52, 0.52)
