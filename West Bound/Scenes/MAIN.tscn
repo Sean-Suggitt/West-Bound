@@ -15,30 +15,28 @@ script = ExtResource("1_5c1w6")
 zoom = Vector2(2.5, 2.5)
 
 [node name="GunHolder" parent="." groups=["GunHolders"] instance=ExtResource("4_783md")]
-position = Vector2(210, 123)
+position = Vector2(204, 129)
 
 [node name="GunHolder2" parent="." groups=["GunHolders"] instance=ExtResource("4_783md")]
-position = Vector2(-208, 124)
+position = Vector2(-204, 126)
 
 [node name="Player" parent="." instance=ExtResource("5_5c1w6")]
-position = Vector2(-256, 112)
+position = Vector2(-258, 116)
 
 [node name="Revolver" parent="." groups=["revolver_group"] instance=ExtResource("4_5c1w6")]
-position = Vector2(205, 117)
+position = Vector2(197, 125)
 
 [node name="Revolver2" parent="." groups=["revolver_group"] instance=ExtResource("4_5c1w6")]
-position = Vector2(-213, 117)
+position = Vector2(-209, 121)
 
 [node name="Player2" parent="." instance=ExtResource("7_kjvde")]
-position = Vector2(256, 115)
+position = Vector2(259, 112)
 
 [node name="SpawnP2" type="Marker2D" parent="." groups=["spawn_P2"]]
-position = Vector2(256, 116)
+position = Vector2(260, 118)
 
 [node name="SpawnP1" type="Marker2D" parent="." groups=["spawn_P1"]]
-position = Vector2(-255, 112)
-
-[node name="Level Root" parent="." instance=ExtResource("7_1tvcf")]
+position = Vector2(-258, 116)
 
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("8_1tvcf")
@@ -58,3 +56,5 @@ offset_bottom = 251.0
 color = Color(0, 0, 0, 1)
 
 [node name="Timer" type="Timer" parent="GameManager"]
+
+[node name="Level Root" parent="." instance=ExtResource("7_1tvcf")]

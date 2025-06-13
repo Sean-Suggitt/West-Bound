@@ -451,7 +451,7 @@ func _dodge_roll() -> void:
 	pass
 
 func _roll_start(duration: float) -> void:
-	if !_is_rolling() and is_on_floor() and can_roll:
+	if !_is_rolling() and can_roll:
 		
 		# disable hurtbox to creat I-frames
 		hurt_box.set_deferred("monitoring", false)

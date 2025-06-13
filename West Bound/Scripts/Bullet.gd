@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 # Configuration
 @export var speed: float = 700.0
-@export var damage: int = 50
 @export var lifetime: float = 5.0  # Despawn after 5 seconds
 
 # Internal state
