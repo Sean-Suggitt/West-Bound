@@ -186,11 +186,16 @@ player_id = "P2"
 position = Vector2(0, -4)
 scale = Vector2(1.00837, 1.00484)
 sprite_frames = SubResource("SpriteFrames_1fr6y")
-animation = &"roll"
+animation = &"idle"
 
 [node name="GunPoint" type="Marker2D" parent="AniPlayerSpr"]
 position = Vector2(9.91699, 8.95665)
 scale = Vector2(0.991699, 0.995183)
+
+[node name="Revolver_Sprite" type="Sprite2D" parent="."]
+position = Vector2(9, -11)
+scale = Vector2(0.46875, 0.5625)
+texture = ExtResource("6_8ogtt")
 
 [node name="P2_CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.0612502)
@@ -204,12 +209,8 @@ collision_mask = 8
 position = Vector2(7, 0)
 shape = SubResource("RectangleShape2D_xwiga")
 
-[node name="Revolver_Sprite" type="Sprite2D" parent="."]
-position = Vector2(26, -11)
-texture = ExtResource("6_8ogtt")
-
 [node name="gun_tip" type="Node2D" parent="."]
-position = Vector2(28, -2)
+position = Vector2(10, -6)
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["Player1Hurtbox"]]
 collision_layer = 64
@@ -230,7 +231,10 @@ one_shot = true
 [node name="P2_Jump_Animation_Start_Timer" type="Timer" parent="."]
 wait_time = 0.2
 
+[node name="P2_Revolver_Firerate_Timer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="pickup_range" to="." method="_on_pickup_range_area_entered"]
 [connection signal="area_exited" from="pickup_range" to="." method="_on_pickup_range_area_exited"]
 [connection signal="timeout" from="P2_Roll_Timer" to="." method="_on_p_2_roll_timer_timeout"]
 [connection signal="timeout" from="P2_Roll_Cooldown_Timer" to="." method="_on_p_2_roll_cooldown_timer_timeout"]
+[connection signal="timeout" from="P2_Revolver_Firerate_Timer" to="." method="_on_p_2_revolver_firerate_timer_timeout"]

@@ -215,7 +215,7 @@ script = ExtResource("1_6nwty")
 position = Vector2(2.27374e-13, -3)
 scale = Vector2(1.00837, 1.00484)
 sprite_frames = SubResource("SpriteFrames_1fr6y")
-animation = &"shoot"
+animation = &"idle"
 
 [node name="GunPoint" type="Marker2D" parent="AniPlayerSpr"]
 position = Vector2(9.91699, 8.95665)
@@ -260,7 +260,10 @@ one_shot = true
 [node name="P1_Jump_Animation_Start_Timer" type="Timer" parent="."]
 wait_time = 0.2
 
+[node name="P1_Revolver_Firerate_Timer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="pickup_range" to="." method="_on_pickup_range_area_entered"]
 [connection signal="area_exited" from="pickup_range" to="." method="_on_pickup_range_area_exited"]
 [connection signal="timeout" from="P1_Roll_Timer" to="." method="_on_p_1_roll_timer_timeout"]
 [connection signal="timeout" from="P1_Roll_Cooldown_Timer" to="." method="_on_p_1_roll_cooldown_timer_timeout"]
+[connection signal="timeout" from="P1_Revolver_Firerate_Timer" to="." method="_on_p_1_revolver_firerate_timer_timeout"]
