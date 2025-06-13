@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cflkjncc2k6pk"]
 
-[ext_resource type="Texture2D" uid="uid://dsuqwa8qh5ns7" path="res://Images/Map Backgrounds/saloon.png" id="1_xatyf"]
+[ext_resource type="Texture2D" uid="uid://dsuqwa8qh5ns7" path="res://Images/Backgrounds/saloon.png" id="1_xatyf"]
 [ext_resource type="TileSet" uid="uid://ccf7gtqpv7klk" path="res://TILEMAPS/TILEMAP_1.tres" id="2_aiflp"]
 
 [node name="Node2D" type="Node2D"]

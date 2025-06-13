@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bsyeo67g1akok"]
 
 [ext_resource type="TileSet" uid="uid://ccf7gtqpv7klk" path="res://TILEMAPS/TILEMAP_1.tres" id="1_v4lso"]
-[ext_resource type="Texture2D" uid="uid://b2jybokprkh2h" path="res://Images/Map Backgrounds/canyon.png" id="2_7vtxg"]
+[ext_resource type="Texture2D" uid="uid://b2jybokprkh2h" path="res://Images/Backgrounds/canyon.png" id="2_7vtxg"]
 
 [node name="Node2D" type="Node2D"]
 
