@@ -21,11 +21,12 @@ signal player_died(player_id)
 
 # Movement configuration
 @export_group("Movement")
-@export var speed: float = 150
+@export var speed: float = 100
 @export var jump_velocity: float = -300.0
 @export var roll_speed = 200
 @export var roll_duration = 0.3
 @export var roll_cooldown = 2
+@export var jump_start_timer_duration = 0.2
 @export var acceleration: float = 0.1
 @export var deceleration: float = 0.1
 @export var air_control_factor: float = 0.9
@@ -57,7 +58,7 @@ var pickup_range: Area2D
 var revolver_sound: AudioStreamPlayer2D
 var Roll_Timer: Timer
 var Roll_Cooldown_Timer: Timer
-
+var Jump_Animation_Start_Timer: Timer
 
 
 # Resources
@@ -77,6 +78,8 @@ var can_roll: bool = true
 var coyote_timer: float = 0.0
 var jump_buffer_timer: float = 0.0
 var was_on_floor: bool = false
+
+var can_start_jump_ani: bool = false
 
 # Death/Respawn system
 var is_dead: bool = false
@@ -109,7 +112,11 @@ func _ready() -> void:
 	
 	# Get node references with proper error handling
 	_setup_node_references()
-	
+	Jump_Animation_Start_Timer = $Jump_Animation_Start_Timer
+	if Jump_Animation_Start_Timer == null:
+		print("Timer is null!")
+		
+		
 	# Initialize player in global system
 	if not Global.player_states.has(player_id):
 		Global.player_states[player_id] = {
@@ -136,65 +143,6 @@ func _ready() -> void:
 	#Move to spawn point on game start
 	_move_to_spawn_point()
 	
-func _move_to_spawn_point() -> void:
-	await get_tree().process_frame
-	var spawn_points = get_tree().get_nodes_in_group("spawn_" + player_id)
-		
-	if spawn_points.size() > 0:
-		global_position = spawn_points[0].global_position
-	else:
-		#fallback positions if spawn points arent found
-		if player_id == "P1":
-			global_position = Vector2(-105, -64)
-		elif player_id == "P2":
-			global_position = Vector2(51, -30) 
-			
-
-func _setup_node_references() -> void:
-	# Get sprite node (try multiple common names)
-	
-	Roll_Timer = $Roll_Timer
-	Roll_Cooldown_Timer = $Roll_Cooldown_Timer
-	
-	if has_node("AniPlayerSpr"):
-		sprite = $AniPlayerSpr
-	elif has_node("AnimatedSprite2D"):
-		sprite = $AnimatedSprite2D
-	else:
-		push_warning("No animated sprite found for player " + player_id)
-	
-	# Get item sprite
-	if has_node("Revolver_Sprite"):
-		item_sprite = $Revolver_Sprite
-	elif has_node("ItemSprite"):
-		item_sprite = $ItemSprite
-	
-	# Get gun tip marker
-	if has_node("gun_tip"):
-		gun_tip = $gun_tip
-	elif has_node("GunTip"):
-		gun_tip = $GunTip
-	elif has_node("GunPoint"):
-		gun_tip = $GunPoint
-	
-	# Get hurtbox
-	if has_node("Hurtbox"):
-		hurt_box = $Hurtbox
-	elif has_node("PlayerHurtbox"):
-		hurt_box = $PlayerHurtbox
-	
-	# Get pickup range
-	if has_node("pickup_range"):
-		pickup_range = $pickup_range
-	elif has_node("PickupRange"):
-		pickup_range = $PickupRange
-	
-	# Get sound player
-	if has_node("revolver_sound"):
-		revolver_sound = $revolver_sound
-	elif has_node("RevolverSound"):
-		revolver_sound = $RevolverSound
-
 func _process(_delta: float) -> void:
 	# Check health
 	if Global.player_states[player_id]["hp"] <= 0 and not is_dead:
@@ -210,6 +158,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed(input_map["roll"]):
 		_roll_start(roll_duration)
 		if _is_rolling():
+			velocity.x = 0
 			velocity.x += roll_speed * Global.player_states[player_id]["direction"]
 		else: 
 			pass
@@ -268,13 +217,13 @@ func _handle_movement(direction: float, on_floor: bool, delta: float) -> void:
 			var current_speed_ratio = abs(velocity.x) / speed
 			var dynamic_friction = air_friction * (1.0 + current_speed_ratio * 0.5)
 			velocity.x = move_toward(velocity.x, 0, dynamic_friction * delta)
-		
-		# Play jump animation if available
+			# Play jump animation if available
 		if sprite and sprite.sprite_frames and sprite.sprite_frames.has_animation("jump"):
 			if !is_rolling:
 				sprite.play("jump")
 
-func _update_visuals(direction: float) -> void:
+
+func _update_visuals(direction: float) -> void: 
 	if sprite:
 		sprite.flip_h = direction < 0
 	
@@ -290,6 +239,7 @@ func _update_visuals(direction: float) -> void:
 	drop_pos = Vector2(direction * 20, 10)
 
 func _handle_jump(delta: float, currently_on_floor: bool) -> void:
+
 	# Update coyote timer
 	if currently_on_floor:
 		coyote_timer = 0.0
@@ -321,6 +271,10 @@ func _handle_jump(delta: float, currently_on_floor: bool) -> void:
 	if Input.is_action_just_released(input_map["jump"]) and velocity.y < 0:
 		velocity.y *= jump_cut_multiplier
 
+
+
+
+	
 # Calculate momentum-based deceleration (kept for backward compatibility)
 func calculate_momentum_deceleration(speed_ratio: float) -> float:
 	speed_ratio = clamp(speed_ratio, 0.0, 1.2)
@@ -339,6 +293,8 @@ func calculate_momentum_deceleration(speed_ratio: float) -> float:
 	
 	return momentum_intervals[-1].deceleration
 
+func set_can_start_jump_ani() -> void:
+	can_start_jump_ani = is_on_floor()
 #--------------------------------------------------------------------
 #----------------------- COMBAT FUNCTIONS ---------------------------
 #--------------------------------------------------------------------
@@ -415,6 +371,65 @@ func _respawn() -> void:
 	# Reset physics
 	velocity = Vector2.ZERO
 
+func _move_to_spawn_point() -> void:
+	await get_tree().process_frame
+	var spawn_points = get_tree().get_nodes_in_group("spawn_" + player_id)
+		
+	if spawn_points.size() > 0:
+		global_position = spawn_points[0].global_position
+	else:
+		#fallback positions if spawn points arent found
+		if player_id == "P1":
+			global_position = Vector2(-105, -64)
+		elif player_id == "P2":
+			global_position = Vector2(51, -30) 
+
+func _setup_node_references() -> void:
+	# Get sprite node (try multiple common names)
+	
+	Roll_Timer = $Roll_Timer
+	Roll_Cooldown_Timer = $Roll_Cooldown_Timer
+	
+	if has_node("AniPlayerSpr"):
+		sprite = $AniPlayerSpr
+	elif has_node("AnimatedSprite2D"):
+		sprite = $AnimatedSprite2D
+	else:
+		push_warning("No animated sprite found for player " + player_id)
+	
+	# Get item sprite
+	if has_node("Revolver_Sprite"):
+		item_sprite = $Revolver_Sprite
+	elif has_node("ItemSprite"):
+		item_sprite = $ItemSprite
+	
+	# Get gun tip marker
+	if has_node("gun_tip"):
+		gun_tip = $gun_tip
+	elif has_node("GunTip"):
+		gun_tip = $GunTip
+	elif has_node("GunPoint"):
+		gun_tip = $GunPoint
+	
+	# Get hurtbox
+	if has_node("Hurtbox"):
+		hurt_box = $Hurtbox
+	elif has_node("PlayerHurtbox"):
+		hurt_box = $PlayerHurtbox
+	
+	# Get pickup range
+	if has_node("pickup_range"):
+		pickup_range = $pickup_range
+	elif has_node("PickupRange"):
+		pickup_range = $PickupRange
+	
+	# Get sound player
+	if has_node("revolver_sound"):
+		revolver_sound = $revolver_sound
+	elif has_node("RevolverSound"):
+		revolver_sound = $RevolverSound
+
+
 #--------------------------------------------------------------------
 #---------------------- ROLLING FUNCTIONS ---------------------------
 #--------------------------------------------------------------------
@@ -437,7 +452,8 @@ func _roll_start(duration: float) -> void:
 		Roll_Timer.wait_time = duration
 		Roll_Cooldown_Timer.wait_time = roll_cooldown
 		Roll_Timer.start()
-		Roll_Cooldown_Timer.start()
+		Roll_Cooldown_Timer.start() 
+		
 
 func _is_rolling():
 	return !Roll_Timer.is_stopped()
@@ -488,7 +504,7 @@ func _on_pickup_range_area_exited(area: Area2D) -> void:
 	if area.is_in_group("revolver_group"):
 		items_in_range.erase(area)
 		print(player_id, " items in range: ", items_in_range)
-		
+
 #--------------------------------------------------------------------
 #----------------------- ROUND RESET FUNCTIONS ----------------------
 #--------------------------------------------------------------------
@@ -519,7 +535,6 @@ func reset_for_new_round() -> void:
 	set_collision_layer_value(1, true)
 	if hurt_box:
 		hurt_box.set_deferred("monitoring", true)
-
 
 #--------------------------------------------------------------------
 #----------------------- LEGACY FUNCTIONS ---------------------------
