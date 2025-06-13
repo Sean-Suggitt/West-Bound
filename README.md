@@ -1,4 +1,4 @@
-# WEST BOUND
+# WESTBOUND
 
 ## Game Contributors:
 - Harry Bhugtana (200489631)
