@@ -25,7 +25,7 @@ signal player_died(player_id)
 @export var jump_velocity: float = -300.0
 @export var roll_speed = 200
 @export var roll_duration = 0.3
-@export var roll_cooldown = 2
+@export var roll_cooldown = 1
 @export var jump_start_timer_duration = 0.2
 @export var acceleration: float = 0.1
 @export var deceleration: float = 0.1
@@ -59,6 +59,7 @@ var revolver_sound: AudioStreamPlayer2D
 var Roll_Timer: Timer
 var Roll_Cooldown_Timer: Timer
 var Jump_Animation_Start_Timer: Timer
+var Player_Collision_Shape: CollisionShape2D
 
 
 # Resources
@@ -112,7 +113,7 @@ func _ready() -> void:
 	
 	# Get node references with proper error handling
 	_setup_node_references()
-	Jump_Animation_Start_Timer = $Jump_Animation_Start_Timer
+
 	if Jump_Animation_Start_Timer == null:
 		print("Timer is null!")
 		
@@ -293,8 +294,6 @@ func calculate_momentum_deceleration(speed_ratio: float) -> float:
 	
 	return momentum_intervals[-1].deceleration
 
-func set_can_start_jump_ani() -> void:
-	can_start_jump_ani = is_on_floor()
 #--------------------------------------------------------------------
 #----------------------- COMBAT FUNCTIONS ---------------------------
 #--------------------------------------------------------------------
@@ -329,7 +328,8 @@ func _handle_death() -> void:
 			sprite.modulate.a = 0.5  # Make semi-transparent
 	
 	# Disable collisions
-	set_collision_layer_value(1, false)
+	set_collision_mask_value(2, false)
+	set_collision_layer_value(2, false)
 	if hurt_box:
 		hurt_box.set_deferred("monitoring", false)
 	
@@ -347,7 +347,8 @@ func _respawn() -> void:
 	is_dead = false
 	
 	# Re-enable collisions
-	set_collision_layer_value(1, true)
+	set_collision_mask_value(2, true)
+	set_collision_layer_value(2, true)
 	if hurt_box:
 		hurt_box.set_deferred("monitoring", true)
 	
@@ -387,8 +388,10 @@ func _move_to_spawn_point() -> void:
 func _setup_node_references() -> void:
 	# Get sprite node (try multiple common names)
 	
-	Roll_Timer = $Roll_Timer
-	Roll_Cooldown_Timer = $Roll_Cooldown_Timer
+	Roll_Timer = get_node("%s_Roll_Timer" % player_id) 
+	Roll_Cooldown_Timer = get_node("%s_Roll_Cooldown_Timer" % player_id)
+	Jump_Animation_Start_Timer = get_node("%s_Jump_Animation_Start_Timer" % player_id)
+	Player_Collision_Shape = get_node("%s_CollisionShape2D" % player_id)
 	
 	if has_node("AniPlayerSpr"):
 		sprite = $AniPlayerSpr
@@ -443,6 +446,9 @@ func _roll_start(duration: float) -> void:
 		# disable hurtbox to creat I-frames
 		hurt_box.set_deferred("monitoring", false)
 		hurt_box.set_deferred("monitorable", false)
+		set_collision_mask_value(2, false)
+		set_collision_layer_value(2, false)
+
 		
 		# Set states
 		is_rolling = true
@@ -457,16 +463,33 @@ func _roll_start(duration: float) -> void:
 
 func _is_rolling():
 	return !Roll_Timer.is_stopped()
-	
-func _on_roll_timer_timeout() -> void:
+
+
+
+func roll_timer_timeout() -> void:
 	hurt_box.set_deferred("monitoring", true)
 	hurt_box.set_deferred("monitorable", true)
+	set_collision_mask_value(2, true)
+	set_collision_layer_value(2, true)
 	is_rolling = false
 	
-func _on_roll_cooldown_timer_timeout() -> void:
+func _on_p_1_roll_timer_timeout() -> void:
+	roll_timer_timeout()
+	
+func _on_p_2_roll_timer_timeout() -> void:
+	roll_timer_timeout()
+
+	
+	
+func roll_cooldown_timer_timeout() -> void:
 	can_roll = true
 	
-	
+func _on_p_1_roll_cooldown_timer_timeout() -> void:
+	roll_cooldown_timer_timeout()
+
+func _on_p_2_roll_cooldown_timer_timeout() -> void:
+	roll_cooldown_timer_timeout()
+
 #--------------------------------------------------------------------
 #---------------------- PICKUP FUNCTIONS ----------------------------
 #--------------------------------------------------------------------
@@ -532,7 +555,8 @@ func reset_for_new_round() -> void:
 	is_dead = false
 	
 	# Re-enable collisions in case they were disabled
-	set_collision_layer_value(1, true)
+	set_collision_mask_value(2, true)
+	set_collision_layer_value(2, true)
 	if hurt_box:
 		hurt_box.set_deferred("monitoring", true)
 

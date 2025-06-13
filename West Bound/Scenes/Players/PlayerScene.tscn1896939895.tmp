@@ -221,7 +221,7 @@ animation = &"shoot"
 position = Vector2(9.91699, 8.95665)
 scale = Vector2(0.991699, 0.995183)
 
-[node name="P1_CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.0612502)
 shape = SubResource("RectangleShape2D_0e48y")
 
@@ -252,15 +252,16 @@ shape = SubResource("RectangleShape2D_uuggy")
 stream = ExtResource("7_tr25n")
 volume_db = -6.315
 
-[node name="P1_Roll_Timer" type="Timer" parent="."]
+[node name="P1Roll_Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="P1_Roll_Cooldown_Timer" type="Timer" parent="."]
+[node name="Roll_Cooldown_Timer" type="Timer" parent="."]
 
-[node name="P1_Jump_Animation_Start_Timer" type="Timer" parent="."]
+[node name="Jump_Animation_Start_Timer" type="Timer" parent="."]
 wait_time = 0.2
 
 [connection signal="area_entered" from="pickup_range" to="." method="_on_pickup_range_area_entered"]
 [connection signal="area_exited" from="pickup_range" to="." method="_on_pickup_range_area_exited"]
-[connection signal="timeout" from="P1_Roll_Timer" to="." method="_on_p_1_roll_timer_timeout"]
-[connection signal="timeout" from="P1_Roll_Cooldown_Timer" to="." method="_on_p_1_roll_cooldown_timer_timeout"]
+[connection signal="timeout" from="P1Roll_Timer" to="." method="_on_roll_timer_timeout"]
+[connection signal="timeout" from="Roll_Cooldown_Timer" to="." method="_on_roll_cooldown_timer_timeout"]
+[connection signal="timeout" from="Jump_Animation_Start_Timer" to="." method="_on_jump_animation_start_timer_timeout"]

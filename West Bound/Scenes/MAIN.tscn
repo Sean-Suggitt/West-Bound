@@ -12,31 +12,32 @@
 script = ExtResource("1_5c1w6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(-78.705, 7.185)
 zoom = Vector2(1.565, 1.565)
 
 [node name="GunHolder" parent="." groups=["GunHolders"] instance=ExtResource("4_783md")]
 position = Vector2(168, 100)
 
 [node name="GunHolder2" parent="." groups=["GunHolders"] instance=ExtResource("4_783md")]
-position = Vector2(13, 71)
+position = Vector2(-333, 48)
 
 [node name="Player" parent="." instance=ExtResource("5_5c1w6")]
-position = Vector2(-82, 58)
+position = Vector2(-330, 133)
 
 [node name="Revolver" parent="." groups=["revolver_group"] instance=ExtResource("4_5c1w6")]
 position = Vector2(163, 94)
 
 [node name="Revolver2" parent="." groups=["revolver_group"] instance=ExtResource("4_5c1w6")]
-position = Vector2(8, 64)
+position = Vector2(-338, 41)
 
 [node name="Player2" parent="." instance=ExtResource("7_kjvde")]
-position = Vector2(174, -1)
+position = Vector2(244, 88)
 
 [node name="SpawnP2" type="Marker2D" parent="." groups=["spawn_P2"]]
-position = Vector2(206, 8)
+position = Vector2(219, 93)
 
 [node name="SpawnP1" type="Marker2D" parent="." groups=["spawn_P1"]]
-position = Vector2(-132, 74)
+position = Vector2(-336, 140)
 
 [node name="Level Root" parent="." instance=ExtResource("7_1tvcf")]
 position = Vector2(-101, 38)
@@ -59,5 +60,3 @@ offset_bottom = 251.0
 color = Color(0, 0, 0, 1)
 
 [node name="Timer" type="Timer" parent="GameManager"]
-
-[editable path="Player"]
