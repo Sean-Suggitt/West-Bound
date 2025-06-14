@@ -274,7 +274,15 @@ func _handle_movement(direction: float, on_floor: bool, delta: float) -> void:
 			# Play jump animation if available
 		if sprite and sprite.sprite_frames and sprite.sprite_frames.has_animation("jump"):
 			if !is_rolling:
-				sprite.play("jump")
+				if velocity.y > 0:
+					# Get the last frame of the jummp animation
+					var last_frame = sprite.sprite_frames.get_frame_count("jump") - 1
+					sprite.play("jump")
+					sprite.set_frame(last_frame)
+					sprite.pause()
+				else:
+					if sprite.animation != "jump" or sprite.is_playing() == false:
+						sprite.play("jump")
 
 func _update_visuals(direction: float) -> void: 
 	if sprite:

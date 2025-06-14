@@ -1,9 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://cltdh4fw2k5dg"]
+[gd_scene load_steps=35 format=3 uid="uid://cltdh4fw2k5dg"]
 
 [ext_resource type="Script" uid="uid://bb2ufopx6shlm" path="res://Scripts/PlayerScript.gd" id="1_kysgo"]
+[ext_resource type="Texture2D" uid="uid://c8u2dx18coteg" path="res://Images/Ocelot/jump/Ocelot-jump.png" id="3_0hojf"]
 [ext_resource type="Texture2D" uid="uid://dia1pqfw0g2vx" path="res://Images/SpriteIdle1-Sheet.png" id="3_fdj68"]
 [ext_resource type="Texture2D" uid="uid://cn750613wy72n" path="res://Images/really_rough_roll.png" id="4_0hojf"]
-[ext_resource type="Texture2D" uid="uid://dqxe77wtvpj2b" path="res://Pixel Adventure 1/Assets/Main Characters/Ninja Frog/Jump (32x32).png" id="4_q2os2"]
 [ext_resource type="Texture2D" uid="uid://jcs7rr44liia" path="res://Images/Ocelot/Run_Animation_Skeleton_-_Main-Sheet.png" id="5_0hojf"]
 [ext_resource type="Texture2D" uid="uid://drld783ltswdh" path="res://Images/revolver.png" id="6_8ogtt"]
 [ext_resource type="AudioStream" uid="uid://c3quiiboppqsr" path="res://Sounds/gun_shot_1.wav" id="7_xo4t5"]
@@ -11,6 +11,22 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_tr25n"]
 atlas = ExtResource("3_fdj68")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6nhu"]
+atlas = ExtResource("3_0hojf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8kkv"]
+atlas = ExtResource("3_0hojf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edhf0"]
+atlas = ExtResource("3_0hojf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_od803"]
+atlas = ExtResource("3_0hojf")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i6njm"]
 atlas = ExtResource("4_0hojf")
@@ -96,11 +112,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_q2os2")
+"texture": SubResource("AtlasTexture_h6nhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8kkv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edhf0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_od803")
 }],
 "loop": true,
 "name": &"jump",
-"speed": 20.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -186,7 +211,7 @@ player_id = "P2"
 position = Vector2(0, -4)
 scale = Vector2(1.00837, 1.00484)
 sprite_frames = SubResource("SpriteFrames_1fr6y")
-animation = &"idle"
+animation = &"jump"
 
 [node name="GunPoint" type="Marker2D" parent="AniPlayerSpr"]
 position = Vector2(9.91699, 8.95665)
