@@ -1,12 +1,13 @@
-[gd_scene load_steps=35 format=3 uid="uid://cltdh4fw2k5dg"]
+[gd_scene load_steps=55 format=3 uid="uid://cltdh4fw2k5dg"]
 
 [ext_resource type="Script" uid="uid://bb2ufopx6shlm" path="res://Scripts/PlayerScript.gd" id="1_kysgo"]
 [ext_resource type="Texture2D" uid="uid://c8u2dx18coteg" path="res://Images/Ocelot/jump/Ocelot-jump.png" id="3_0hojf"]
 [ext_resource type="Texture2D" uid="uid://dia1pqfw0g2vx" path="res://Images/SpriteIdle1-Sheet.png" id="3_fdj68"]
 [ext_resource type="Texture2D" uid="uid://cn750613wy72n" path="res://Images/really_rough_roll.png" id="4_0hojf"]
 [ext_resource type="Texture2D" uid="uid://jcs7rr44liia" path="res://Images/Ocelot/Run_Animation_Skeleton_-_Main-Sheet.png" id="5_0hojf"]
-[ext_resource type="Texture2D" uid="uid://drld783ltswdh" path="res://Images/revolver.png" id="6_8ogtt"]
+[ext_resource type="Texture2D" uid="uid://b0kh1mt3hd8pn" path="res://Images/Guns/Revolver-Firing.png" id="7_0hojf"]
 [ext_resource type="AudioStream" uid="uid://c3quiiboppqsr" path="res://Sounds/gun_shot_1.wav" id="7_xo4t5"]
+[ext_resource type="Texture2D" uid="uid://cq4igk4noikq5" path="res://Images/Guns/Revolver Run animation aligned fixed.png" id="8_jintr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tr25n"]
 atlas = ExtResource("3_fdj68")
@@ -201,6 +202,150 @@ size = Vector2(52, 25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uuggy"]
 size = Vector2(20, 26)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajlng"]
+atlas = ExtResource("7_0hojf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftist"]
+atlas = ExtResource("8_jintr")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v75go"]
+atlas = ExtResource("8_jintr")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6xl4"]
+atlas = ExtResource("8_jintr")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmc4x"]
+atlas = ExtResource("8_jintr")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbl0r"]
+atlas = ExtResource("8_jintr")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7le06"]
+atlas = ExtResource("8_jintr")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v01i"]
+atlas = ExtResource("8_jintr")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6ey4"]
+atlas = ExtResource("8_jintr")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_damci"]
+atlas = ExtResource("8_jintr")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ih0y"]
+atlas = ExtResource("8_jintr")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v86og"]
+atlas = ExtResource("8_jintr")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjaet"]
+atlas = ExtResource("7_0hojf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15hyo"]
+atlas = ExtResource("7_0hojf")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rof6"]
+atlas = ExtResource("7_0hojf")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mexp8"]
+atlas = ExtResource("7_0hojf")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6r15"]
+atlas = ExtResource("7_0hojf")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nl1j"]
+atlas = ExtResource("7_0hojf")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f41m3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajlng")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftist")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v75go")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6xl4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmc4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbl0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7le06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1v01i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6ey4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_damci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ih0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v86og")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjaet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15hyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rof6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mexp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6r15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nl1j")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 18.0
+}]
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 collision_mask = 3
@@ -216,11 +361,6 @@ animation = &"jump"
 [node name="GunPoint" type="Marker2D" parent="AniPlayerSpr"]
 position = Vector2(9.91699, 8.95665)
 scale = Vector2(0.991699, 0.995183)
-
-[node name="Revolver_Sprite" type="Sprite2D" parent="."]
-position = Vector2(9, -11)
-scale = Vector2(0.46875, 0.5625)
-texture = ExtResource("6_8ogtt")
 
 [node name="P2_CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.0612502)
@@ -257,6 +397,11 @@ one_shot = true
 wait_time = 0.2
 
 [node name="P2_Revolver_Firerate_Timer" type="Timer" parent="."]
+
+[node name="Revolver_Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(20, -18)
+sprite_frames = SubResource("SpriteFrames_f41m3")
+animation = &"shoot"
 
 [connection signal="area_entered" from="pickup_range" to="." method="_on_pickup_range_area_entered"]
 [connection signal="area_exited" from="pickup_range" to="." method="_on_pickup_range_area_exited"]

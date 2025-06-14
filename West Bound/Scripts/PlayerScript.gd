@@ -55,7 +55,7 @@ var can_shoot: bool = true
 
 # Node references - will be set in _ready()
 var sprite: AnimatedSprite2D
-var item_sprite: Sprite2D
+var revolver_sprite: AnimatedSprite2D
 var gun_tip: Node2D
 var hurt_box: Area2D
 var pickup_range: Area2D
@@ -79,6 +79,9 @@ var items_in_range: Array = []
 # rolling 
 var is_rolling: bool = false
 var can_roll: bool = true
+
+# shooting
+var is_shooting: bool = false
 
 # Jump state tracking
 var coyote_timer: float = 0.0
@@ -136,8 +139,8 @@ func _ready() -> void:
 		hurt_box.add_to_group(player_id + "_Hurtbox")
 	
 	# Hide item sprite initially
-	if item_sprite:
-		item_sprite.hide()
+	if revolver_sprite:
+		revolver_sprite.hide()
 	
 	# Connect pickup range signals
 	if pickup_range:
@@ -196,8 +199,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _setup_node_references() -> void:
-	# Get sprite node (try multiple common names)
-	
 	Roll_Timer = get_node("%s_Roll_Timer" % player_id) 
 	Roll_Cooldown_Timer = get_node("%s_Roll_Cooldown_Timer" % player_id)
 	Jump_Animation_Start_Timer = get_node("%s_Jump_Animation_Start_Timer" % player_id)
@@ -206,42 +207,28 @@ func _setup_node_references() -> void:
 	
 	if has_node("AniPlayerSpr"):
 		sprite = $AniPlayerSpr
-	elif has_node("AnimatedSprite2D"):
-		sprite = $AnimatedSprite2D
 	else:
 		push_warning("No animated sprite found for player " + player_id)
 	
 	# Get item sprite
 	if has_node("Revolver_Sprite"):
-		item_sprite = $Revolver_Sprite
-	elif has_node("ItemSprite"):
-		item_sprite = $ItemSprite
+		revolver_sprite = $Revolver_Sprite
 	
 	# Get gun tip marker
 	if has_node("gun_tip"):
 		gun_tip = $gun_tip
-	elif has_node("GunTip"):
-		gun_tip = $GunTip
-	elif has_node("GunPoint"):
-		gun_tip = $GunPoint
 	
 	# Get hurtbox
 	if has_node("Hurtbox"):
 		hurt_box = $Hurtbox
-	elif has_node("PlayerHurtbox"):
-		hurt_box = $PlayerHurtbox
 	
 	# Get pickup range
 	if has_node("pickup_range"):
 		pickup_range = $pickup_range
-	elif has_node("PickupRange"):
-		pickup_range = $PickupRange
 	
 	# Get sound player
 	if has_node("revolver_sound"):
 		revolver_sound = $revolver_sound
-	elif has_node("RevolverSound"):
-		revolver_sound = $RevolverSound
 
 #--------------------------------------------------------------------
 #---------------------- MOVEMENT FUNCTIONS --------------------------
@@ -257,10 +244,12 @@ func _handle_movement(direction: float, on_floor: bool, delta: float) -> void:
 			_update_visuals(direction)
 			if sprite and !is_rolling:
 				sprite.play("run")
+				revolver_sprite.play("run")
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed * deceleration)
 			if sprite and !is_rolling:
 				sprite.play("idle")
+				revolver_sprite.play("idle")
 	else:
 		# Air movement with momentum
 		if direction:
@@ -278,6 +267,7 @@ func _handle_movement(direction: float, on_floor: bool, delta: float) -> void:
 					# Get the last frame of the jummp animation
 					var last_frame = sprite.sprite_frames.get_frame_count("jump") - 1
 					sprite.play("jump")
+					revolver_sprite.play("idle")
 					sprite.set_frame(last_frame)
 					sprite.pause()
 				else:
@@ -288,10 +278,10 @@ func _update_visuals(direction: float) -> void:
 	if sprite:
 		sprite.flip_h = direction < 0
 	
-	if item_sprite:
-		item_sprite.flip_h = direction < 0
-		var x_offset = abs(item_sprite.position.x)
-		item_sprite.position.x = x_offset * sign(direction)
+	if revolver_sprite:
+		revolver_sprite.flip_h = direction < 0
+		var x_offset = abs(revolver_sprite.position.x)
+		revolver_sprite.position.x = x_offset * sign(direction)
 	
 	if gun_tip:
 		gun_tip.position.x = abs(gun_tip.position.x) * sign(direction)
@@ -358,6 +348,7 @@ func _shoot() -> void:
 	print(player_id + " tried to shoot. ")
 	if holding_item and can_shoot:
 		can_shoot = false
+		is_shooting = true
 		
 		Revolver_Firerate_Timer.wait_time = revolver_firerate
 		Revolver_Firerate_Timer.start()
@@ -376,6 +367,7 @@ func _shoot() -> void:
 			revolver_sound.play()
 		
 		print("Player ", player_id, " shot! HP: ", Global.player_states[player_id]["hp"])
+
 
 func _on_p_1_revolver_firerate_timer_timeout() -> void:
 	can_shoot = true
@@ -517,14 +509,14 @@ func _handle_pickup() -> void:
 func _pickup_item(item: Area2D) -> void:
 	item.queue_free()
 	holding_item = true
-	if item_sprite:
-		item_sprite.show()
+	if revolver_sprite:
+		revolver_sprite.show()
 	items_in_range.erase(item)
 
 func _drop_item() -> void:
 	holding_item = false
-	if item_sprite:
-		item_sprite.hide()
+	if revolver_sprite:
+		revolver_sprite.hide()
 	
 	var item = revolver_scene.instantiate()
 	var drop_direction = Global.player_states[player_id]["direction"]
@@ -552,8 +544,8 @@ func reset_for_new_round() -> void:
 	# Clear item holding state without dropping (items will respawn at their original positions)
 	if holding_item:
 		holding_item = false
-		if item_sprite:
-			item_sprite.hide()
+		if revolver_sprite:
+			revolver_sprite.hide()
 	# Clear any items that might be in range
 	items_in_range.clear()
 	
@@ -597,9 +589,9 @@ func _input(_event: InputEvent) -> void:
 
 # Legacy node references for backward compatibility
 # These need to be set after _ready() runs
-var item_spr: Sprite2D :
+var item_spr: AnimatedSprite2D :
 	get:
-		return item_sprite
+		return revolver_sprite
 var revolver_tip: Node2D :
 	get:
 		return gun_tip
