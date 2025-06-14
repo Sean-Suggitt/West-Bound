@@ -14,15 +14,55 @@ func _ready() -> void:
 	print(player1)
 	print(player2)
 	
+	# Print game start message
+	print("=================================")
+	print("WEST BOUND - Score Attack Mode")
+	print("First player to reach 5 points wins!")
+	print("Press SPACE to restart after game over.")
+	print("=================================")
+	
 	pass # Replace with function body.
 
 var round_active = true
+var game_over = false  # Track if the game has ended
 
 func _on_player_died(player_id):
-	print(player_id)
-	if round_active:
+	print(player_id + " died!")
+	if round_active and not game_over:
 		round_active = false;
-		_start_round_end_sequence();
+		
+		# Determine the winner of this round
+		var winner = "P2" if player_id == "P1" else "P1"
+		Global.increment_score(winner)
+		
+		# Check for game win condition
+		if Global.get_score(winner) >= 5:
+			game_over = true
+			_handle_game_win(winner)
+		else:
+			# Show current scores in console
+			print("Current Scores:")
+			print("P1: " + str(Global.get_score("P1")))
+			print("P2: " + str(Global.get_score("P2")))
+			_start_round_end_sequence()
+
+func _handle_game_win(winner: String):
+	print("=================================")
+	print("GAME OVER!")
+	print("Player " + winner + " has won!")
+	print("Final Scores:")
+	print("P1: " + str(Global.get_score("P1")))
+	print("P2: " + str(Global.get_score("P2")))
+	print("=================================")
+	
+	# Fade to black and stay black
+	await get_tree().create_timer(1.0).timeout;
+	$FadeRect.modulate.a = 0.0
+	$FadeRect.show()
+	$FadeLight.energy = 0
+	$FadeLight.create_tween().tween_property($FadeLight, "energy", 1, 1.33)
+	$FadeRect.create_tween().tween_property($FadeRect, "modulate:a", 1, 1.33)
+	# Game stays in this state - no reset
 
 func _start_round_end_sequence():
 	#fade to black
@@ -139,4 +179,23 @@ func _spawn_revolvers(count: int) -> Array:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	# Allow game restart when game is over
+	if game_over and Input.is_action_just_pressed("ui_select"):
+		_restart_game()
 	pass
+
+func _restart_game():
+	print("Restarting game...")
+	game_over = false
+	round_active = true
+	Global.reset_scores()
+	_reset_round()
+	
+	# Fade back in
+	$FadeRect.create_tween().tween_property($FadeRect, "modulate:a", 0, 0.5)
+	$FadeLight.create_tween().tween_property($FadeLight, "energy", 0, 0.5)
+	await get_tree().create_timer(0.5).timeout
+	$FadeRect.hide()
+	
+	print("Game restarted! Scores reset to 0.")
+	print("First to 5 wins!")

@@ -10,12 +10,14 @@ var player_states = {
 	"P1": {
 		"hp": MAX_PLAYER_HP,
 		"direction": 1,
-		"alive": true
+		"alive": true,
+		"score": 0
 	},
 	"P2": {
 		"hp": MAX_PLAYER_HP,
 		"direction": 1,
-		"alive": true
+		"alive": true,
+		"score": 0
 	}
 }
 
@@ -50,6 +52,21 @@ func get_player_health_percentage(player_name: String) -> float:
 	if player_states.has(player_name):
 		return float(player_states[player_name]["hp"]) / float(MAX_PLAYER_HP)
 	return 0.0
+
+# Score management functions
+func increment_score(player_name: String) -> void:
+	if player_states.has(player_name):
+		player_states[player_name]["score"] += 1
+		print(player_name + " score: " + str(player_states[player_name]["score"]))
+
+func get_score(player_name: String) -> int:
+	if player_states.has(player_name):
+		return player_states[player_name]["score"]
+	return 0
+
+func reset_scores() -> void:
+	for player in player_states:
+		player_states[player]["score"] = 0
 
 # Define general classes such as item and entity
 # Manage loading levels
