@@ -1,44 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://hb6y4verpfd6"]
+[gd_scene load_steps=3 format=3 uid="uid://hb6y4verpfd6"]
 
 [ext_resource type="Texture2D" uid="uid://bugkd64r240pv" path="res://Images/Backgrounds/homepage.png" id="1_28flt"]
+[ext_resource type="Script" uid="uid://b70b3vo8yajqv" path="res://Scripts/main_menu.gd" id="1_48xlc"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 28.0
+offset_right = 9.0
+offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_48xlc")
 
 [node name="Homepage" type="Sprite2D" parent="."]
-position = Vector2(576, 359)
-scale = Vector2(0.76, 0.76)
+position = Vector2(960.16, 513.44)
+scale = Vector2(1.26021, 1.06164)
 texture = ExtResource("1_28flt")
 
-[node name="Button" type="Button" parent="."]
+[node name="StartButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.642
-anchor_top = 0.63
-anchor_right = 0.642
-anchor_bottom = 0.63
-offset_left = -123.584
-offset_top = -40.24
-offset_right = 124.416
-offset_bottom = 39.76
+anchor_left = 0.482
+anchor_top = 0.606
+anchor_right = 0.482
+anchor_bottom = 0.606
+offset_left = -124.44
+offset_top = -40.48
+offset_right = 123.56
+offset_bottom = 39.52
 theme_override_font_sizes/font_size = 40
 text = "Start"
 
-[node name="Button2" type="Button" parent="."]
+[node name="ExitButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.642
-anchor_top = 0.789
-anchor_right = 0.642
-anchor_bottom = 0.789
-offset_left = -123.584
-offset_top = -40.272
-offset_right = 124.416
-offset_bottom = 39.728
+anchor_left = 0.483
+anchor_top = 0.716
+anchor_right = 0.483
+anchor_bottom = 0.716
+offset_left = -126.36
+offset_top = -40.28
+offset_right = 124.64
+offset_bottom = 39.72
 theme_override_font_sizes/font_size = 40
 text = "Exit"

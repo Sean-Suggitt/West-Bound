@@ -1,30 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://ca7gb01laaa4g"]
+[gd_scene load_steps=3 format=3 uid="uid://ca7gb01laaa4g"]
 
 [ext_resource type="Texture2D" uid="uid://bkb6r4c65715e" path="res://Images/Backgrounds/endgame.png" id="1_4qhd6"]
+[ext_resource type="Script" uid="uid://bh6kc1muithm" path="res://Scripts/endgame.gd" id="1_5g5t5"]
 
-[node name="MainMenu" type="Control"]
+[node name="EndGame" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5g5t5")
 
 [node name="Endgame" type="Sprite2D" parent="."]
-position = Vector2(577, 284)
-scale = Vector2(0.76, 0.76)
+position = Vector2(964.16, 541.94)
+scale = Vector2(1.24849, 1.0509)
 texture = ExtResource("1_4qhd6")
 
-[node name="Button" type="Button" parent="."]
+[node name="MainMenuBtn" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.498
-anchor_top = 0.901
-anchor_right = 0.498
-anchor_bottom = 0.901
-offset_left = -141.696
-offset_top = -23.848
-offset_right = 141.304
-offset_bottom = 24.152
+anchor_left = 0.516
+anchor_top = 0.871
+anchor_right = 0.516
+anchor_bottom = 0.871
+offset_left = -140.72
+offset_top = -23.6801
+offset_right = 142.28
+offset_bottom = 24.3199
 theme_override_font_sizes/font_size = 29
 text = "Back To Main Menu"

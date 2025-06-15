@@ -1,15 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxrqbgc1igt68"]
+[gd_scene load_steps=11 format=3 uid="uid://dxrqbgc1igt68"]
 
 [ext_resource type="Script" uid="uid://bcu0gdv1kuqjx" path="res://Scripts/GLOBAL.gd" id="1_5c1w6"]
+[ext_resource type="PackedScene" uid="uid://hb6y4verpfd6" path="res://Scenes/main_menu.tscn" id="2_whe6r"]
 [ext_resource type="PackedScene" uid="uid://b26b6vpjfeouj" path="res://Scenes/Items/Revolver.tscn" id="4_5c1w6"]
 [ext_resource type="PackedScene" uid="uid://bs04jfikm7vb6" path="res://Scenes/Items/GunSpawner.tscn" id="4_783md"]
 [ext_resource type="PackedScene" uid="uid://bcgegtsnnb4gq" path="res://Scenes/Players/PlayerScene.tscn" id="5_5c1w6"]
 [ext_resource type="PackedScene" uid="uid://bpjqufsdcri7i" path="res://Scenes/Levels/Cave Level.tscn" id="7_1tvcf"]
 [ext_resource type="PackedScene" uid="uid://cltdh4fw2k5dg" path="res://Scenes/Players/PlayerScene_P2.tscn" id="7_kjvde"]
 [ext_resource type="Script" uid="uid://d25lsmv776f5s" path="res://Scripts/GameManager.gd" id="8_1tvcf"]
+[ext_resource type="PackedScene" uid="uid://ca7gb01laaa4g" path="res://Scenes/endgame.tscn" id="10_mhs8k"]
+[ext_resource type="Script" uid="uid://bh6kc1muithm" path="res://Scripts/endgame.gd" id="11_pe4ny"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_5c1w6")
+
+[node name="MainMenu" parent="." instance=ExtResource("2_whe6r")]
+offset_left = 517.0
+offset_top = -455.0
+offset_right = 517.0
+offset_bottom = -455.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
@@ -58,3 +67,10 @@ color = Color(0, 0, 0, 1)
 [node name="Timer" type="Timer" parent="GameManager"]
 
 [node name="Level Root" parent="." instance=ExtResource("7_1tvcf")]
+
+[node name="EndGame" parent="." instance=ExtResource("10_mhs8k")]
+offset_left = 1179.0
+offset_top = 444.0
+offset_right = 1179.0
+offset_bottom = 444.0
+script = ExtResource("11_pe4ny")
