@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxl8rjtueki1g"]
+
+[ext_resource type="AudioStream" uid="uid://cx5m5dilgwgrr" path="res://Sounds/drop gun.wav" id="1_h7gu5"]
+
+[node name="drop_gun_sound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_h7gu5")

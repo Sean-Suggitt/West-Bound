@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxrqbgc1igt68"]
+[gd_scene load_steps=9 format=3 uid="uid://dxrqbgc1igt68"]
 
-[ext_resource type="Script" uid="uid://bcu0gdv1kuqjx" path="res://Scripts/GLOBAL.gd" id="1_5c1w6"]
 [ext_resource type="PackedScene" uid="uid://hb6y4verpfd6" path="res://Scenes/main_menu.tscn" id="2_whe6r"]
 [ext_resource type="PackedScene" uid="uid://b26b6vpjfeouj" path="res://Scenes/Items/Revolver.tscn" id="4_5c1w6"]
 [ext_resource type="PackedScene" uid="uid://bs04jfikm7vb6" path="res://Scenes/Items/GunSpawner.tscn" id="4_783md"]
@@ -11,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://ca7gb01laaa4g" path="res://Scenes/endgame.tscn" id="10_mhs8k"]
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_5c1w6")
 
 [node name="MainMenu" parent="." instance=ExtResource("2_whe6r")]
 offset_left = 517.0

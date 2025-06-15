@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://cltdh4fw2k5dg"]
+[gd_scene load_steps=57 format=3 uid="uid://cltdh4fw2k5dg"]
 
 [ext_resource type="Script" uid="uid://bb2ufopx6shlm" path="res://Scripts/PlayerScript.gd" id="1_kysgo"]
 [ext_resource type="Texture2D" uid="uid://c8u2dx18coteg" path="res://Images/Ocelot/jump/Ocelot-jump.png" id="3_0hojf"]
@@ -9,6 +9,10 @@
 [ext_resource type="AudioStream" uid="uid://c3quiiboppqsr" path="res://Sounds/gun_shot_1.wav" id="7_xo4t5"]
 [ext_resource type="Texture2D" uid="uid://cq4igk4noikq5" path="res://Images/Guns/Revolver Run animation aligned fixed.png" id="8_jintr"]
 [ext_resource type="PackedScene" uid="uid://cbwm7trydl1lk" path="res://Scenes/Sounds/running_sound.tscn" id="9_f41m3"]
+[ext_resource type="PackedScene" uid="uid://drbobv880ucgu" path="res://Scenes/Sounds/death_sound.tscn" id="10_fhdsy"]
+[ext_resource type="PackedScene" uid="uid://2ta4pvy4bo3m" path="res://Scenes/Sounds/pickup_gun_sound.tscn" id="11_eq66n"]
+[ext_resource type="PackedScene" uid="uid://dxl8rjtueki1g" path="res://Scenes/Sounds/drop_gun_sound.tscn" id="12_ov245"]
+[ext_resource type="PackedScene" uid="uid://08ov83kndi3v" path="res://Scenes/Sounds/jump_sound.tscn" id="13_j1qel"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tr25n"]
 atlas = ExtResource("3_fdj68")
@@ -384,6 +388,14 @@ sprite_frames = SubResource("SpriteFrames_f41m3")
 animation = &"shoot"
 
 [node name="running_sound" parent="." instance=ExtResource("9_f41m3")]
+
+[node name="death_sound" parent="." instance=ExtResource("10_fhdsy")]
+
+[node name="pickup_gun_sound" parent="." instance=ExtResource("11_eq66n")]
+
+[node name="drop_gun_sound" parent="." instance=ExtResource("12_ov245")]
+
+[node name="jump_sound" parent="." instance=ExtResource("13_j1qel")]
 
 [connection signal="area_entered" from="pickup_range" to="." method="_on_pickup_range_area_entered"]
 [connection signal="area_exited" from="pickup_range" to="." method="_on_pickup_range_area_exited"]

@@ -4,3 +4,4 @@
 
 [node name="running_sound" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_ng3h0")
+volume_db = 3.556

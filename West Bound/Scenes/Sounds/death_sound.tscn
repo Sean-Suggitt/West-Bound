@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://drbobv880ucgu"]
+
+[ext_resource type="AudioStream" uid="uid://be4no2moypgtf" path="res://Sounds/Death sound.wav" id="1_6le2s"]
+
+[node name="death_sound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_6le2s")
+volume_db = 5.621
