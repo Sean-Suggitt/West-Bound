@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbwm7trydl1lk"]
+
+[ext_resource type="AudioStream" uid="uid://dshpv074g2v2q" path="res://Sounds/Footsteps.wav" id="1_ng3h0"]
+
+[node name="running_sound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_ng3h0")

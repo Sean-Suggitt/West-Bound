@@ -56,14 +56,20 @@ var can_shoot: bool = true
 # Node references - will be set in _ready()
 var sprite: AnimatedSprite2D
 var revolver_sprite: AnimatedSprite2D
+
 var gun_tip: Node2D
+
 var hurt_box: Area2D
 var pickup_range: Area2D
+
 var revolver_sound: AudioStreamPlayer2D
+var run_sound: AudioStreamPlayer2D
+
 var Roll_Timer: Timer
 var Roll_Cooldown_Timer: Timer
 var Jump_Animation_Start_Timer: Timer
 var Revolver_Firerate_Timer: Timer
+
 var Player_Collision_Shape: CollisionShape2D
 
 
@@ -75,6 +81,9 @@ var revolver_scene = preload("res://Scenes/Items/Revolver.tscn")
 var holding_item: bool = false
 var drop_pos: Vector2
 var items_in_range: Array = []
+
+# running
+var is_running = false
 
 # rolling 
 var is_rolling: bool = false
@@ -208,6 +217,8 @@ func _setup_node_references() -> void:
 	Player_Collision_Shape = get_node("%s_CollisionShape2D" % player_id)
 	Revolver_Firerate_Timer = get_node("%s_Revolver_Firerate_Timer" % player_id)
 	
+	run_sound = $running_sound
+	
 	if has_node("AniPlayerSpr"):
 		sprite = $AniPlayerSpr
 	else:
@@ -241,19 +252,23 @@ func _handle_movement(direction: float, on_floor: bool, delta: float) -> void:
 	if on_floor:
 		if _is_rolling():
 			sprite.play("roll")
+			is_running = false
 		# Ground movement
 		elif direction:
+			is_running = true
 			velocity.x = move_toward(velocity.x, direction * speed, speed * acceleration)
 			_update_visuals(direction)
 			if sprite and !is_rolling:
 				sprite.play("run")
 				revolver_sprite.play("run")
 		else:
+			is_running = false
 			velocity.x = move_toward(velocity.x, 0, speed * deceleration)
 			if sprite and !is_rolling:
 				sprite.play("idle")
 				revolver_sprite.play("idle")
 	else:
+		is_running = false
 		# Air movement with momentum
 		if direction:
 			var target_speed = direction * speed * air_control_factor
@@ -276,6 +291,8 @@ func _handle_movement(direction: float, on_floor: bool, delta: float) -> void:
 				else:
 					if sprite.animation != "jump" or sprite.is_playing() == false:
 						sprite.play("jump")
+	
+	play_run_sound()
 
 func _update_visuals(direction: float) -> void: 
 	if sprite:
@@ -535,6 +552,18 @@ func _on_pickup_range_area_exited(area: Area2D) -> void:
 	if area.is_in_group("revolver_group"):
 		items_in_range.erase(area)
 		print(player_id, " items in range: ", items_in_range)
+
+#--------------------------------------------------------------------
+#----------------------- SOUND FUNCTIONS ----------------------
+#--------------------------------------------------------------------
+
+func play_run_sound() -> void:
+	if is_running and not run_sound.playing:
+		run_sound.play()
+	else:
+		if !is_running:
+			run_sound.stop()
+
 
 #--------------------------------------------------------------------
 #----------------------- ROUND RESET FUNCTIONS ----------------------
