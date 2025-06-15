@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cltdh4fw2k5dg"]
+[gd_scene load_steps=59 format=3 uid="uid://cltdh4fw2k5dg"]
 
 [ext_resource type="Script" uid="uid://bb2ufopx6shlm" path="res://Scripts/PlayerScript.gd" id="1_kysgo"]
 [ext_resource type="Texture2D" uid="uid://c8u2dx18coteg" path="res://Images/Ocelot/jump/Ocelot-jump.png" id="3_0hojf"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://2ta4pvy4bo3m" path="res://Scenes/Sounds/pickup_gun_sound.tscn" id="11_eq66n"]
 [ext_resource type="PackedScene" uid="uid://dxl8rjtueki1g" path="res://Scenes/Sounds/drop_gun_sound.tscn" id="12_ov245"]
 [ext_resource type="PackedScene" uid="uid://08ov83kndi3v" path="res://Scenes/Sounds/jump_sound.tscn" id="13_j1qel"]
+[ext_resource type="PackedScene" uid="uid://ddxr501m3ka70" path="res://Scenes/Sounds/roll_sound.tscn" id="14_djtuv"]
+[ext_resource type="PackedScene" uid="uid://ckmucd5np1aua" path="res://Scenes/Sounds/slide_sound.tscn" id="15_mobiq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tr25n"]
 atlas = ExtResource("3_fdj68")
@@ -368,10 +370,6 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("RectangleShape2D_uuggy")
 
-[node name="revolver_sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_xo4t5")
-volume_db = -6.315
-
 [node name="P2_Roll_Timer" type="Timer" parent="."]
 one_shot = true
 
@@ -387,6 +385,10 @@ position = Vector2(20, -18)
 sprite_frames = SubResource("SpriteFrames_f41m3")
 animation = &"shoot"
 
+[node name="revolver_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_xo4t5")
+volume_db = -6.315
+
 [node name="running_sound" parent="." instance=ExtResource("9_f41m3")]
 
 [node name="death_sound" parent="." instance=ExtResource("10_fhdsy")]
@@ -396,6 +398,10 @@ animation = &"shoot"
 [node name="drop_gun_sound" parent="." instance=ExtResource("12_ov245")]
 
 [node name="jump_sound" parent="." instance=ExtResource("13_j1qel")]
+
+[node name="roll_sound" parent="." instance=ExtResource("14_djtuv")]
+
+[node name="slide_sound" parent="." instance=ExtResource("15_mobiq")]
 
 [connection signal="area_entered" from="pickup_range" to="." method="_on_pickup_range_area_entered"]
 [connection signal="area_exited" from="pickup_range" to="." method="_on_pickup_range_area_exited"]

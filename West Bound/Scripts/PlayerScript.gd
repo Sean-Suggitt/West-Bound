@@ -64,6 +64,7 @@ var death_sound: AudioStreamPlayer2D
 var pickup_gun_sound: AudioStreamPlayer2D
 var drop_gun_sound: AudioStreamPlayer2D
 var jump_sound: AudioStreamPlayer2D
+var roll_sound: AudioStreamPlayer2D
 
 
 var Roll_Timer: Timer
@@ -185,6 +186,7 @@ func _physics_process(delta: float) -> void:
 		if _is_rolling():
 			velocity.x = 0
 			velocity.x += roll_speed * Global.player_states[player_id]["direction"]
+			roll_sound.play()
 		else: 
 			pass
 	
@@ -226,6 +228,11 @@ func _setup_node_references() -> void:
 	pickup_gun_sound = $pickup_gun_sound
 	drop_gun_sound = $drop_gun_sound
 	jump_sound = $jump_sound
+	
+	if player_id == "P1":
+		roll_sound = $roll_sound
+	else:
+		roll_sound = $slide_sound
 
 	
 	if has_node("AniPlayerSpr"):
@@ -477,9 +484,6 @@ func _move_to_spawn_point() -> void:
 #--------------------------------------------------------------------
 #---------------------- ROLLING FUNCTIONS ---------------------------
 #--------------------------------------------------------------------
-
-func _dodge_roll() -> void:
-	pass
 
 func _roll_start(duration: float) -> void:
 	if !_is_rolling() and can_roll:

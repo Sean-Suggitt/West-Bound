@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckmucd5np1aua"]
+
+[ext_resource type="AudioStream" uid="uid://bgl2tfge5q7jl" path="res://Sounds/slide sound.wav" id="1_xb0no"]
+
+[node name="slide_sound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_xb0no")
