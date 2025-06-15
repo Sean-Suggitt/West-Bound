@@ -9,4 +9,9 @@ func _ready():
 
 func _on_start_pressed() -> void:
 	print("Start pressed, loading: ", game_scene_path)
+	
+	Global.reset_player("P1")
+	Global.reset_player("P2")
+	Global.reset_scores()
+	
 	get_tree().change_scene_to_file(game_scene_path)

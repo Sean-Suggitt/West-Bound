@@ -118,6 +118,9 @@ func _ready() -> void:
 			"pickup": "P2_pickup",
 			"roll": "P2_roll"
 		}
+		
+		is_dead = false #reset death state
+		print(player_id, " HP at start: ", Global.player_states[player_id]["hp"])
 	
 	# Get node references with proper error handling
 	_setup_node_references()
