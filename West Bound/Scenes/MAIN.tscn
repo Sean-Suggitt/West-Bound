@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dxrqbgc1igt68"]
+[gd_scene load_steps=10 format=3 uid="uid://dxrqbgc1igt68"]
 
 [ext_resource type="PackedScene" uid="uid://hb6y4verpfd6" path="res://Scenes/main_menu.tscn" id="2_whe6r"]
 [ext_resource type="PackedScene" uid="uid://b26b6vpjfeouj" path="res://Scenes/Items/Revolver.tscn" id="4_5c1w6"]
@@ -64,8 +64,8 @@ color = Color(0, 0, 0, 1)
 
 [node name="Timer" type="Timer" parent="GameManager"]
 
-[node name="Level Root" parent="." instance=ExtResource("7_1tvcf")]
-position = Vector2(0, 7)
+[node name="Level Root" parent="." instance=ExtResource("8_n02r8")]
+position = Vector2(0, 142)
 
 [node name="ScoreUI" parent="." instance=ExtResource("12_score")]
 
