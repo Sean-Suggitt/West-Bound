@@ -36,7 +36,7 @@ func _on_player_died(player_id):
 		Global.increment_score(winner)
 		
 		# Check for game win condition
-		if Global.get_score(winner) >= 1:
+		if Global.get_score(winner) >= 5:
 			game_over = true
 			_handle_game_win(winner)
 		else:
@@ -56,10 +56,17 @@ func _handle_game_win(winner: String):
 	print("=================================")
 	
 	game_over = true
+	
+	# Hide the score UI before changing scenes
+	await get_tree().create_timer(2.0).timeout
+	var score_ui = get_tree().current_scene.get_node_or_null("ScoreUI")
+	if score_ui:
+		score_ui.hide()
+	
 	Global.reset_scores()
 	
 	#Change to endgame scene
-	await get_tree().create_timer(1.0).timeout
+	
 	var endgame_scene := "res://Scenes/endgame.tscn"
 	get_tree().change_scene_to_file(endgame_scene)
 	

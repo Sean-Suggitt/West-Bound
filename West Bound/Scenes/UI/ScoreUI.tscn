@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://l5jem2xxnfre"]
+
+[ext_resource type="Script" uid="uid://83tx181xryn7" path="res://Scripts/ScoreUI.gd" id="1_score"]
+[ext_resource type="Texture2D" uid="uid://cu66kpp8jchd8" path="res://Images/UI/DelRadoNameUI.png" id="2_p1name"]
+[ext_resource type="Texture2D" uid="uid://dbmpag0pl41er" path="res://Images/UI/OceleotNameUI.png" id="3_p2name"]
+[ext_resource type="Texture2D" uid="uid://d1lt5po0uauiy" path="res://Images/UI/ScoreUI.png" id="4_scores"]
+
+[node name="ScoreUI" type="CanvasLayer"]
+script = ExtResource("1_score")
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="P1Score" type="Control" parent="Container"]
+layout_mode = 1
+anchor_top = 0.05
+anchor_bottom = 0.05
+offset_left = 4.0
+offset_top = 920.0
+offset_right = 304.0
+offset_bottom = 1020.0
+grow_vertical = 0
+
+[node name="P1Name" type="TextureRect" parent="Container/P1Score"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = -46.0
+offset_right = 173.0
+offset_bottom = 74.0
+texture = ExtResource("2_p1name")
+
+[node name="P1ScoreSprite" type="Sprite2D" parent="Container/P1Score"]
+position = Vector2(231, 25)
+scale = Vector2(3.807, 3.661)
+texture = ExtResource("4_scores")
+hframes = 5
+
+[node name="P2Score" type="Control" parent="Container"]
+layout_mode = 1
+anchor_left = 0.931
+anchor_top = 0.912
+anchor_right = 0.931
+anchor_bottom = 0.912
+offset_left = -628.52
+offset_top = -232.96
+offset_right = 199.48
+offset_bottom = 68.0399
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="P2Name" type="TextureRect" parent="Container/P2Score"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.597
+anchor_top = 0.724
+anchor_right = 0.597
+anchor_bottom = 0.724
+offset_left = -222.316
+offset_top = -59.924
+offset_right = -13.316
+offset_bottom = 72.076
+grow_horizontal = 0
+texture = ExtResource("3_p2name")
+
+[node name="P2ScoreSprite" type="Sprite2D" parent="Container/P2Score"]
+position = Vector2(248, 225)
+scale = Vector2(5.24329, 4.1196)
+texture = ExtResource("4_scores")
+hframes = 5
