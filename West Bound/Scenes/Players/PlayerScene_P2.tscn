@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://cltdh4fw2k5dg"]
+[gd_scene load_steps=58 format=3 uid="uid://cltdh4fw2k5dg"]
 
 [ext_resource type="Script" uid="uid://bb2ufopx6shlm" path="res://Scripts/PlayerScript.gd" id="1_kysgo"]
 [ext_resource type="Texture2D" uid="uid://c8u2dx18coteg" path="res://Images/Ocelot/jump/Ocelot-jump.png" id="3_0hojf"]
@@ -9,6 +9,11 @@
 [ext_resource type="AudioStream" uid="uid://c3quiiboppqsr" path="res://Sounds/gun_shot_1.wav" id="7_xo4t5"]
 [ext_resource type="Texture2D" uid="uid://cq4igk4noikq5" path="res://Images/Guns/Revolver Run animation aligned fixed.png" id="8_jintr"]
 [ext_resource type="PackedScene" uid="uid://cbwm7trydl1lk" path="res://Scenes/Sounds/running_sound.tscn" id="9_f41m3"]
+[ext_resource type="AudioStream" uid="uid://be4no2moypgtf" path="res://Sounds/Death sound.wav" id="10_5eook"]
+[ext_resource type="AudioStream" uid="uid://cx5m5dilgwgrr" path="res://Sounds/drop gun.wav" id="11_djtuv"]
+[ext_resource type="AudioStream" uid="uid://ca3kgtw2ipxxy" path="res://Sounds/pickup gun.wav" id="12_mobiq"]
+[ext_resource type="AudioStream" uid="uid://b5vl6kppix6ii" path="res://Sounds/Jump sound.wav" id="13_fjyyx"]
+[ext_resource type="AudioStream" uid="uid://bgl2tfge5q7jl" path="res://Sounds/slide sound.wav" id="14_fpkqk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tr25n"]
 atlas = ExtResource("3_fdj68")
@@ -384,6 +389,27 @@ sprite_frames = SubResource("SpriteFrames_f41m3")
 animation = &"shoot"
 
 [node name="running_sound" parent="." instance=ExtResource("9_f41m3")]
+
+[node name="death_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_5eook")
+
+[node name="drop_gun_sound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(1.00837, 1.00484)
+stream = ExtResource("11_djtuv")
+
+[node name="pickup_gun_sound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(1.00837, 1.00484)
+stream = ExtResource("12_mobiq")
+
+[node name="jump_sound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(1.00837, 1.00484)
+stream = ExtResource("13_fjyyx")
+
+[node name="slide_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_fpkqk")
 
 [connection signal="area_entered" from="pickup_range" to="." method="_on_pickup_range_area_entered"]
 [connection signal="area_exited" from="pickup_range" to="." method="_on_pickup_range_area_exited"]

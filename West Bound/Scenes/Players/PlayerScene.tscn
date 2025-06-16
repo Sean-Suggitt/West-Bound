@@ -10,12 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://cq4igk4noikq5" path="res://Images/Guns/Revolver Run animation aligned fixed.png" id="7_3q541"]
 [ext_resource type="AudioStream" uid="uid://c3quiiboppqsr" path="res://Sounds/gun_shot_1.wav" id="7_tr25n"]
 [ext_resource type="PackedScene" uid="uid://cbwm7trydl1lk" path="res://Scenes/Sounds/running_sound.tscn" id="10_d3ngm"]
-[ext_resource type="PackedScene" path="res://Scenes/Sounds/death_sound.tscn" id="11_woajj"]
-[ext_resource type="PackedScene" path="res://Scenes/Sounds/pickup_gun_sound.tscn" id="12_felgn"]
-[ext_resource type="PackedScene" path="res://Scenes/Sounds/drop_gun_sound.tscn" id="13_486fw"]
-[ext_resource type="PackedScene" path="res://Scenes/Sounds/jump_sound.tscn" id="14_6bhsc"]
-[ext_resource type="PackedScene" path="res://Scenes/Sounds/roll_sound.tscn" id="15_sr66r"]
-[ext_resource type="PackedScene" path="res://Scenes/Sounds/slide_sound.tscn" id="16_g3233"]
+[ext_resource type="PackedScene" uid="uid://drbobv880ucgu" path="res://Scenes/Sounds/death_sound.tscn" id="11_woajj"]
+[ext_resource type="PackedScene" uid="uid://2ta4pvy4bo3m" path="res://Scenes/Sounds/pickup_gun_sound.tscn" id="12_felgn"]
+[ext_resource type="PackedScene" uid="uid://dxl8rjtueki1g" path="res://Scenes/Sounds/drop_gun_sound.tscn" id="13_486fw"]
+[ext_resource type="PackedScene" uid="uid://08ov83kndi3v" path="res://Scenes/Sounds/jump_sound.tscn" id="14_6bhsc"]
+[ext_resource type="PackedScene" uid="uid://ddxr501m3ka70" path="res://Scenes/Sounds/roll_sound.tscn" id="15_sr66r"]
+[ext_resource type="PackedScene" uid="uid://ckmucd5np1aua" path="res://Scenes/Sounds/slide_sound.tscn" id="16_g3233"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nxi7d"]
 atlas = ExtResource("2_tr25n")
