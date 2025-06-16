@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://hb6y4verpfd6"]
+[gd_scene load_steps=4 format=3 uid="uid://hb6y4verpfd6"]
 
 [ext_resource type="Texture2D" uid="uid://bugkd64r240pv" path="res://Images/Backgrounds/homepage.png" id="1_28flt"]
 [ext_resource type="Script" uid="uid://b70b3vo8yajqv" path="res://Scripts/main_menu.gd" id="1_48xlc"]
+[ext_resource type="PackedScene" uid="uid://88wh2bsa11pb" path="res://Scenes/Sounds/main_menu_music.tscn" id="3_1ehe0"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -48,3 +49,5 @@ offset_right = 124.64
 offset_bottom = 39.72
 theme_override_font_sizes/font_size = 40
 text = "Exit"
+
+[node name="main_menu_music" parent="." instance=ExtResource("3_1ehe0")]

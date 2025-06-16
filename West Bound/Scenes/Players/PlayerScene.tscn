@@ -1,9 +1,9 @@
-[gd_scene load_steps=69 format=3 uid="uid://bcgegtsnnb4gq"]
+[gd_scene load_steps=68 format=3 uid="uid://bcgegtsnnb4gq"]
 
 [ext_resource type="Script" uid="uid://bb2ufopx6shlm" path="res://Scripts/PlayerScript.gd" id="1_6nwty"]
 [ext_resource type="Texture2D" uid="uid://duwhh3t7s24br" path="res://Images/Del Rato/Del Rato Idle.png" id="2_tr25n"]
+[ext_resource type="Texture2D" uid="uid://cdcodouj5kjcl" path="res://Images/Del Rato/roll shape.png" id="4_sr66r"]
 [ext_resource type="Texture2D" uid="uid://4fxukhkdluer" path="res://Images/Jump Animation skeleton-Sheet.png" id="4_tr25n"]
-[ext_resource type="Texture2D" uid="uid://cn750613wy72n" path="res://Images/really_rough_roll.png" id="5_3q541"]
 [ext_resource type="Texture2D" uid="uid://bs8hli4fxc2ub" path="res://Images/Del Rato/Del Rato Run Animation Final-Sheet.png" id="5_ea6en"]
 [ext_resource type="Texture2D" uid="uid://bc4ehhmc21vdp" path="res://Images/Del Rato/Del Rato iDLE shooting-Sheet.png" id="6_42q41"]
 [ext_resource type="Texture2D" uid="uid://b0kh1mt3hd8pn" path="res://Images/Guns/Revolver-Firing.png" id="6_ea6en"]
@@ -37,33 +37,29 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("4_tr25n")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_42q41"]
-atlas = ExtResource("5_3q541")
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fc80"]
+atlas = ExtResource("4_sr66r")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d3ngm"]
-atlas = ExtResource("5_3q541")
+[sub_resource type="AtlasTexture" id="AtlasTexture_jibno"]
+atlas = ExtResource("4_sr66r")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_woajj"]
-atlas = ExtResource("5_3q541")
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdgon"]
+atlas = ExtResource("4_sr66r")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_felgn"]
-atlas = ExtResource("5_3q541")
+[sub_resource type="AtlasTexture" id="AtlasTexture_puvcw"]
+atlas = ExtResource("4_sr66r")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_486fw"]
-atlas = ExtResource("5_3q541")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rakh5"]
+atlas = ExtResource("4_sr66r")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6bhsc"]
-atlas = ExtResource("5_3q541")
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5x6e"]
+atlas = ExtResource("4_sr66r")
 region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lobrk"]
-atlas = ExtResource("5_3q541")
-region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3q541"]
 atlas = ExtResource("5_ea6en")
@@ -162,25 +158,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_42q41")
+"texture": SubResource("AtlasTexture_1fc80")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d3ngm")
+"texture": SubResource("AtlasTexture_jibno")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_woajj")
+"texture": SubResource("AtlasTexture_cdgon")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_felgn")
+"texture": SubResource("AtlasTexture_puvcw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_486fw")
+"texture": SubResource("AtlasTexture_rakh5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6bhsc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lobrk")
+"texture": SubResource("AtlasTexture_y5x6e")
 }],
 "loop": true,
 "name": &"roll",
@@ -410,8 +403,8 @@ script = ExtResource("1_6nwty")
 position = Vector2(0, -4)
 scale = Vector2(1.00837, 1.00484)
 sprite_frames = SubResource("SpriteFrames_1fr6y")
-animation = &"shoot"
-frame_progress = 0.470757
+animation = &"roll"
+frame_progress = 0.904729
 
 [node name="GunPoint" type="Marker2D" parent="AniPlayerSpr"]
 position = Vector2(9.91699, 8.95665)

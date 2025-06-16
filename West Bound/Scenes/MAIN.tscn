@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxrqbgc1igt68"]
+[gd_scene load_steps=9 format=3 uid="uid://dxrqbgc1igt68"]
 
-[ext_resource type="PackedScene" uid="uid://hb6y4verpfd6" path="res://Scenes/main_menu.tscn" id="2_whe6r"]
 [ext_resource type="PackedScene" uid="uid://b26b6vpjfeouj" path="res://Scenes/Items/Revolver.tscn" id="4_5c1w6"]
 [ext_resource type="PackedScene" uid="uid://bs04jfikm7vb6" path="res://Scenes/Items/GunSpawner.tscn" id="4_783md"]
 [ext_resource type="PackedScene" uid="uid://bcgegtsnnb4gq" path="res://Scenes/Players/PlayerScene.tscn" id="5_5c1w6"]
@@ -11,12 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://l5jem2xxnfre" path="res://Scenes/UI/ScoreUI.tscn" id="12_score"]
 
 [node name="Main" type="Node2D"]
-
-[node name="MainMenu" parent="." instance=ExtResource("2_whe6r")]
-offset_left = 517.0
-offset_top = -455.0
-offset_right = 517.0
-offset_bottom = -455.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)

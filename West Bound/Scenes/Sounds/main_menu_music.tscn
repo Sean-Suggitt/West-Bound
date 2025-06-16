@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://88wh2bsa11pb"]
+
+[ext_resource type="AudioStream" uid="uid://br7igjg82cbhy" path="res://Sounds/game title theme.wav" id="1_rigl5"]
+
+[node name="main_menu_music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_rigl5")
