@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddxr501m3ka70"]
+
+[ext_resource type="AudioStream" uid="uid://uj7r82v53nqf" path="res://Sounds/roll sound.wav" id="1_l8an3"]
+
+[node name="roll_sound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_l8an3")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2ta4pvy4bo3m"]
+
+[ext_resource type="AudioStream" uid="uid://ca3kgtw2ipxxy" path="res://Sounds/pickup gun.wav" id="1_pcghj"]
+
+[node name="pickup_gun_sound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_pcghj")

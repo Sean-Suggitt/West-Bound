@@ -5,6 +5,14 @@ const REVOLVER_DAMAGE = 50
 const MAX_PLAYER_HP = 100
 const MAX_BULLETS = 10
 
+const HURT_SOUND = preload("res://Scenes/Sounds/hurt_sound.tscn")
+var hurt_sound: AudioStreamPlayer2D
+
+func _ready() -> void:
+	hurt_sound = HURT_SOUND.instantiate()
+	add_child(hurt_sound)
+
+
 # Player states
 var player_states = {
 	"P1": {
@@ -37,6 +45,7 @@ func unregister_bullet(bullet_id: int) -> void:
 func damage_player(player_name: String, damage: int) -> void:
 	if player_states.has(player_name):
 		player_states[player_name]["hp"] -= damage
+		hurt_sound.play()
 		if player_states[player_name]["hp"] <= 0:
 			player_states[player_name]["alive"] = false
 			player_states[player_name]["hp"] = 0

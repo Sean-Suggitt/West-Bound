@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://bcgegtsnnb4gq"]
+[gd_scene load_steps=69 format=3 uid="uid://bcgegtsnnb4gq"]
 
 [ext_resource type="Script" uid="uid://bb2ufopx6shlm" path="res://Scripts/PlayerScript.gd" id="1_6nwty"]
 [ext_resource type="Texture2D" uid="uid://duwhh3t7s24br" path="res://Images/Del Rato/Del Rato Idle.png" id="2_tr25n"]
@@ -10,6 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://cq4igk4noikq5" path="res://Images/Guns/Revolver Run animation aligned fixed.png" id="7_3q541"]
 [ext_resource type="AudioStream" uid="uid://c3quiiboppqsr" path="res://Sounds/gun_shot_1.wav" id="7_tr25n"]
 [ext_resource type="PackedScene" uid="uid://cbwm7trydl1lk" path="res://Scenes/Sounds/running_sound.tscn" id="10_d3ngm"]
+[ext_resource type="PackedScene" uid="uid://drbobv880ucgu" path="res://Scenes/Sounds/death_sound.tscn" id="11_woajj"]
+[ext_resource type="PackedScene" uid="uid://2ta4pvy4bo3m" path="res://Scenes/Sounds/pickup_gun_sound.tscn" id="12_felgn"]
+[ext_resource type="PackedScene" uid="uid://dxl8rjtueki1g" path="res://Scenes/Sounds/drop_gun_sound.tscn" id="13_486fw"]
+[ext_resource type="PackedScene" uid="uid://08ov83kndi3v" path="res://Scenes/Sounds/jump_sound.tscn" id="14_6bhsc"]
+[ext_resource type="PackedScene" uid="uid://ddxr501m3ka70" path="res://Scenes/Sounds/roll_sound.tscn" id="15_sr66r"]
+[ext_resource type="PackedScene" uid="uid://ckmucd5np1aua" path="res://Scenes/Sounds/slide_sound.tscn" id="16_g3233"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nxi7d"]
 atlas = ExtResource("2_tr25n")
@@ -401,7 +407,7 @@ collision_mask = 3
 script = ExtResource("1_6nwty")
 
 [node name="AniPlayerSpr" type="AnimatedSprite2D" parent="."]
-position = Vector2(2.27374e-13, -3)
+position = Vector2(0, -4)
 scale = Vector2(1.00837, 1.00484)
 sprite_frames = SubResource("SpriteFrames_1fr6y")
 animation = &"shoot"
@@ -441,10 +447,6 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("RectangleShape2D_uuggy")
 
-[node name="revolver_sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_tr25n")
-volume_db = -6.315
-
 [node name="P1_Roll_Timer" type="Timer" parent="."]
 one_shot = true
 
@@ -455,7 +457,23 @@ wait_time = 0.2
 
 [node name="P1_Revolver_Firerate_Timer" type="Timer" parent="."]
 
+[node name="revolver_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_tr25n")
+volume_db = -6.315
+
 [node name="running_sound" parent="." instance=ExtResource("10_d3ngm")]
+
+[node name="death_sound" parent="." instance=ExtResource("11_woajj")]
+
+[node name="pickup_gun_sound" parent="." instance=ExtResource("12_felgn")]
+
+[node name="drop_gun_sound" parent="." instance=ExtResource("13_486fw")]
+
+[node name="jump_sound" parent="." instance=ExtResource("14_6bhsc")]
+
+[node name="roll_sound" parent="." instance=ExtResource("15_sr66r")]
+
+[node name="slide_sound" parent="." instance=ExtResource("16_g3233")]
 
 [connection signal="area_entered" from="pickup_range" to="." method="_on_pickup_range_area_entered"]
 [connection signal="area_exited" from="pickup_range" to="." method="_on_pickup_range_area_exited"]

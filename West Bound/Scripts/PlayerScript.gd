@@ -49,10 +49,6 @@ signal player_died(player_id)
 #--------------------------------------------------------------------
 #--------------------------- VARIABLES ------------------------------
 #--------------------------------------------------------------------
-
-# Shooting
-var can_shoot: bool = true
-
 # Node references - will be set in _ready()
 var sprite: AnimatedSprite2D
 var revolver_sprite: AnimatedSprite2D
@@ -64,6 +60,12 @@ var pickup_range: Area2D
 
 var revolver_sound: AudioStreamPlayer2D
 var run_sound: AudioStreamPlayer2D
+var death_sound: AudioStreamPlayer2D
+var pickup_gun_sound: AudioStreamPlayer2D
+var drop_gun_sound: AudioStreamPlayer2D
+var jump_sound: AudioStreamPlayer2D
+var roll_sound: AudioStreamPlayer2D
+
 
 var Roll_Timer: Timer
 var Roll_Cooldown_Timer: Timer
@@ -72,6 +74,8 @@ var Revolver_Firerate_Timer: Timer
 
 var Player_Collision_Shape: CollisionShape2D
 
+# shooting
+var can_shoot: bool = true
 
 # Resources
 var bullet_scene = preload("res://Scenes/Items/bullet.tscn")
@@ -101,6 +105,7 @@ var can_start_jump_ani: bool = false
 
 # Death/Respawn system
 var is_dead: bool = false
+
 
 # Momentum system for smooth air control
 var momentum_intervals = [
@@ -181,6 +186,7 @@ func _physics_process(delta: float) -> void:
 		if _is_rolling():
 			velocity.x = 0
 			velocity.x += roll_speed * Global.player_states[player_id]["direction"]
+			roll_sound.play()
 		else: 
 			pass
 	
@@ -190,7 +196,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Handle pickup
 	if Input.is_action_just_pressed(input_map["pickup"]):
-		_handle_pickup()
+		_handle_pickup_and_drop()
 		
 	# Jump handling
 	_handle_jump(delta, currently_on_floor)
@@ -218,6 +224,16 @@ func _setup_node_references() -> void:
 	Revolver_Firerate_Timer = get_node("%s_Revolver_Firerate_Timer" % player_id)
 	
 	run_sound = $running_sound
+	death_sound = $death_sound
+	pickup_gun_sound = $pickup_gun_sound
+	drop_gun_sound = $drop_gun_sound
+	jump_sound = $jump_sound
+	
+	if player_id == "P1":
+		roll_sound = $roll_sound
+	else:
+		roll_sound = $slide_sound
+
 	
 	if has_node("AniPlayerSpr"):
 		sprite = $AniPlayerSpr
@@ -334,6 +350,7 @@ func _handle_jump(delta: float, currently_on_floor: bool) -> void:
 	var has_jump_buffered = jump_buffer_timer > 0
 	
 	if has_jump_buffered and (currently_on_floor or can_coyote_jump):
+		jump_sound.play()
 		velocity.y = jump_velocity
 		jump_buffer_timer = 0.0
 		coyote_timer = coyote_time + 1  # Prevent multiple coyote jumps
@@ -397,6 +414,7 @@ func _on_p_2_revolver_firerate_timer_timeout() -> void:
 
 func _handle_death() -> void:
 	is_dead = true
+	death_sound.play()
 	emit_signal("player_died", player_id)
 	# Visual feedback
 	if sprite:
@@ -467,9 +485,6 @@ func _move_to_spawn_point() -> void:
 #---------------------- ROLLING FUNCTIONS ---------------------------
 #--------------------------------------------------------------------
 
-func _dodge_roll() -> void:
-	pass
-
 func _roll_start(duration: float) -> void:
 	if !_is_rolling() and can_roll:
 		
@@ -516,15 +531,18 @@ func _on_p_2_roll_cooldown_timer_timeout() -> void:
 	roll_cooldown_timer_timeout()
 
 #--------------------------------------------------------------------
-#---------------------- PICKUP FUNCTIONS ----------------------------
+#---------------------- PICKUP/DROP FUNCTIONS ----------------------------
 #--------------------------------------------------------------------
 
-func _handle_pickup() -> void:
+func _handle_pickup_and_drop() -> void:
 	print("Player ", player_id, " pressed pickup")
 	if holding_item:
 		_drop_item()
+		drop_gun_sound.play()
 	elif not items_in_range.is_empty():
 		_pickup_item(items_in_range.pick_random())
+		pickup_gun_sound.play()
+		
 
 func _pickup_item(item: Area2D) -> void:
 	item.queue_free()
