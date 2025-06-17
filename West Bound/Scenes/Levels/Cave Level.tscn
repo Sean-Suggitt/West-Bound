@@ -98,7 +98,6 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_brlvu")
 
 [node name="Cave Level Root" type="Node2D" groups=["World"]]
-position = Vector2(2, -132)
 
 [node name="DynamicPackage" parent="." instance=ExtResource("3_xmn46")]
 

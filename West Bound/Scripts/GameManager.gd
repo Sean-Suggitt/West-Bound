@@ -157,6 +157,7 @@ func _reset_round():
 	if not player2.is_connected("player_died", Callable(self, "_on_player_died")):
 		player2.connect("player_died", Callable(self, "_on_player_died"))
 		print("Reconnected to player2 death signal after level change")
+		
 	
 	
 	# Call the new reset method on both players to handle item clearing
