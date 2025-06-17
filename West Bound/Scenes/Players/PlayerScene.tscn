@@ -414,7 +414,7 @@ animation = &"shoot"
 frame_progress = 0.470757
 
 [node name="GunPoint" type="Marker2D" parent="AniPlayerSpr"]
-position = Vector2(9.91699, 8.95665)
+position = Vector2(13.8838, -1.19209e-07)
 scale = Vector2(0.991699, 0.995183)
 
 [node name="Revolver_Sprite" type="AnimatedSprite2D" parent="."]
@@ -437,7 +437,7 @@ position = Vector2(7, 0)
 shape = SubResource("RectangleShape2D_xwiga")
 
 [node name="gun_tip" type="Node2D" parent="."]
-position = Vector2(14, -6)
+position = Vector2(16, -4)
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["Player1Hurtbox"]]
 visible = false

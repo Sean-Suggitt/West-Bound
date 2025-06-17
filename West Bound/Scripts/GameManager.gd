@@ -4,15 +4,17 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 #Preload revlover scene
 var revolver_scene = preload("res://Scenes/Items/Revolver.tscn")
+@onready var level_manager: LevelManager = $"../LevelManager"
+var players_connected := false
 
 func _ready() -> void:
-	#Get reference to players
-	var player1 = get_parent().get_node("Player")
-	var player2 = get_parent().get_node("Player2")
-	player1.connect("player_died", Callable(self, "_on_player_died"))
-	player2.connect("player_died", Callable(self, "_on_player_died"))
-	print(player1)
-	print(player2)
+	print("Im here suckas")
+	
+	# Give the LevelManager time to load the level
+	await get_tree().process_frame
+	
+	# Wait for players to exist and connect signals
+	await _wait_for_players_and_connect()
 	
 	# Print game start message
 	print("=================================")
@@ -21,13 +23,56 @@ func _ready() -> void:
 	print("Press SPACE to restart after game over.")
 	print("=================================")
 	
-	pass # Replace with function body.
+	# Spawn initial revolvers at gun holders
+	await get_tree().process_frame
+	var gun_count = _count_gun_holders()
+	if gun_count > 0:  # Fix: was checking == 0
+		_spawn_revolvers(gun_count)
+		print("Initial revolvers spawned at gun holders")
+
+func _wait_for_players_and_connect() -> void:
+	var max_attempts = 60  # Try for about 1 second at 60fps
+	var attempts = 0
+	
+	while attempts < max_attempts and not players_connected:
+		var player1_nodes = get_tree().get_nodes_in_group("player1")
+		var player2_nodes = get_tree().get_nodes_in_group("player2")
+		
+		if not player1_nodes.is_empty() and not player2_nodes.is_empty():
+			# Players found, connect signals
+			var player1 = player1_nodes[0]
+			var player2 = player2_nodes[0]
+			
+			if player1.connect("player_died", Callable(self, "_on_player_died")) == OK:
+				print("Successfully connected to player1 death signal")
+			else:
+				push_error("Failed to connect to player1 death signal!")
+			
+			if player2.connect("player_died", Callable(self, "_on_player_died")) == OK:
+				print("Successfully connected to player2 death signal")
+			else:
+				push_error("Failed to connect to player2 death signal!")
+			
+			print("Connected to player1: ", player1.get_path())
+			print("Connected to player2: ", player2.get_path())
+			players_connected = true
+			return
+		
+		# Wait another frame and try again
+		await get_tree().process_frame
+		attempts += 1
+	
+	if not players_connected:
+		push_error("Players not found after waiting! Check if levels contain player nodes in groups 'player1' and 'player2'")
+
 
 var round_active = true
 var game_over = false  # Track if the game has ended
 
 func _on_player_died(player_id):
-	print(player_id + " died!")
+	print("=== PLAYER DIED SIGNAL RECEIVED ===")
+	print("Player ", player_id, " has died!")
+	print("Round active: ", round_active, ", Game over: ", game_over)
 	if round_active and not game_over:
 		round_active = false;
 		
@@ -80,6 +125,7 @@ func _start_round_end_sequence():
 	$FadeLight.energy = 0
 	$FadeLight.create_tween().tween_property($FadeLight, "energy", 1, 1.33 )
 	$FadeRect.create_tween().tween_property($FadeRect, "modulate:a", 1, 1.33)
+	print("Screen Faded")
 	await get_tree().create_timer(2.0).timeout;
 	_reset_round();
 
@@ -88,10 +134,32 @@ func _reset_round():
 	Global.reset_player("P1")
 	Global.reset_player("P2")
 	
-	var player1 = get_parent().get_node("Player")
-	var player2 = get_parent().get_node("Player2")
+	# Switch to next level
+	level_manager.next_level()
+	await get_tree().process_frame
 	
-	# Call the new reset method on both players to handle item clearingAdd commentMore actions
+	# Find players using groups 
+	var player1_nodes = get_tree().get_nodes_in_group("player1")
+	var player2_nodes = get_tree().get_nodes_in_group("player2")
+	
+	if player1_nodes.is_empty() or player2_nodes.is_empty():
+		push_error("Players not found during reset!")
+		return
+		
+	var player1 = player1_nodes[0]
+	var player2 = player2_nodes[0]
+	
+	# Reconnect signals to new player instances
+	if not player1.is_connected("player_died", Callable(self, "_on_player_died")):
+		player1.connect("player_died", Callable(self, "_on_player_died"))
+		print("Reconnected to player1 death signal after level change " + str(player1.global_position))
+	
+	if not player2.is_connected("player_died", Callable(self, "_on_player_died")):
+		player2.connect("player_died", Callable(self, "_on_player_died"))
+		print("Reconnected to player2 death signal after level change")
+	
+	
+	# Call the new reset method on both players to handle item clearing
 	if player1.has_method("reset_for_new_round"):
 		player1.reset_for_new_round()
 	if player2.has_method("reset_for_new_round"):
@@ -165,8 +233,15 @@ func _spawn_revolvers(count: int) -> Array:
 		#add to group
 		new_revolver.add_to_group("revolver_group")
 		
-		#add to main as child
-		get_parent().add_child(new_revolver)
+		# Find the dynamic package to add revolvers to the same container as other items
+		var dynamic_packages = get_tree().get_nodes_in_group("dynamic_package")
+		var spawn_parent = get_parent() # fallback to parent if no dynamic package
+		
+		if not dynamic_packages.is_empty():
+			spawn_parent = dynamic_packages[0]
+		
+		#add to appropriate parent
+		spawn_parent.add_child(new_revolver)
 		
 		#Store Reference
 		spawned_revolvers.append(new_revolver)

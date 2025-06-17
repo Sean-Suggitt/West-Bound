@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl4a5ko67jq7l"]
+
+[ext_resource type="Script" uid="uid://d25lsmv776f5s" path="res://Scripts/GameManager.gd" id="1_myjr6"]
+
+[node name="GameManager" type="Node2D"]
+script = ExtResource("1_myjr6")
+
+[node name="FadeLight" type="DirectionalLight2D" parent="."]
+energy = 0.0
+blend_mode = 1
+shadow_enabled = true
+
+[node name="FadeRect" type="ColorRect" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+offset_left = -478.0
+offset_top = -349.0
+offset_right = 487.0
+offset_bottom = 251.0
+color = Color(0, 0, 0, 1)
+
+[node name="Timer" type="Timer" parent="."]
