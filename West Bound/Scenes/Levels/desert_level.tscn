@@ -110,7 +110,7 @@ tile_set = SubResource("TileSet_xpolh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(2, -105)
+position = Vector2(9, -12)
 texture = ExtResource("3_mnret")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -118,7 +118,7 @@ position = Vector2(287, -253)
 sprite_frames = SubResource("SpriteFrames_di2sv")
 
 [node name="SpawnP1" type="Node2D" parent="." groups=["spawn_P1"]]
-position = Vector2(-343, -52)
+position = Vector2(-343, 29)
 
 [node name="SpawnP2" type="Node2D" parent="." groups=["spawn_P2"]]
-position = Vector2(332, -50)
+position = Vector2(351, 30)
