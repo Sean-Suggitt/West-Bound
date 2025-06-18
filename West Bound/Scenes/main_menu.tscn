@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://hb6y4verpfd6"]
 
-[ext_resource type="Texture2D" uid="uid://bugkd64r240pv" path="res://Images/Backgrounds/homepage.png" id="1_28flt"]
 [ext_resource type="Script" uid="uid://b70b3vo8yajqv" path="res://Scripts/main_menu.gd" id="1_48xlc"]
+[ext_resource type="Texture2D" uid="uid://bh7ryp1mqggtm" path="res://Images/Backgrounds/Title_screen.png" id="2_1ehe0"]
 [ext_resource type="PackedScene" uid="uid://88wh2bsa11pb" path="res://Scenes/Sounds/main_menu_music.tscn" id="3_1ehe0"]
 
 [node name="MainMenu" type="Control"]
@@ -18,9 +18,9 @@ grow_vertical = 2
 script = ExtResource("1_48xlc")
 
 [node name="Homepage" type="Sprite2D" parent="."]
-position = Vector2(960.16, 513.44)
-scale = Vector2(1.26021, 1.06164)
-texture = ExtResource("1_28flt")
+position = Vector2(951, 512)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_1ehe0")
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 1
