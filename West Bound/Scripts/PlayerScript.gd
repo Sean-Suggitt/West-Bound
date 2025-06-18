@@ -391,8 +391,10 @@ func _shoot() -> void:
 		Revolver_Firerate_Timer.start()
 		
 		var bullet = bullet_scene.instantiate()
+		
 		if gun_tip:
 			bullet.global_position = gun_tip.global_position
+			print(gun_tip.global_position)
 		else:
 			bullet.global_position = global_position
 		
@@ -416,6 +418,7 @@ func _handle_death() -> void:
 	is_dead = true
 	death_sound.play()
 	emit_signal("player_died", player_id)
+	print("Signal emitted for player: ", player_id)
 	# Visual feedback
 	if sprite:
 		if sprite.sprite_frames and sprite.sprite_frames.has_animation("death"):
