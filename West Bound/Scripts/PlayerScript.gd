@@ -23,7 +23,7 @@ signal player_died(player_id)
 @export_group("Movement")
 @export var speed: float = 100
 @export var jump_velocity: float = -300.0
-@export var roll_speed = 200
+@export var roll_speed = 250
 @export var roll_duration = 0.3
 @export var roll_cooldown = 1
 @export var jump_start_timer_duration = 0.2
