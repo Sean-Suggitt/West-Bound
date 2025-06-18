@@ -1,6 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://dxrqbgc1igt68"]
 
-[ext_resource type="PackedScene" uid="uid://cl4a5ko67jq7l" path="res://Scenes/Game Functions/game_manager.tscn" id="1_125yk"]
+[ext_resource type="PackedScene" uid="uid://b26b6vpjfeouj" path="res://Scenes/Items/Revolver.tscn" id="4_5c1w6"]
+[ext_resource type="PackedScene" uid="uid://bs04jfikm7vb6" path="res://Scenes/Items/GunSpawner.tscn" id="4_783md"]
+[ext_resource type="PackedScene" uid="uid://bcgegtsnnb4gq" path="res://Scenes/Players/PlayerScene.tscn" id="5_5c1w6"]
+[ext_resource type="PackedScene" uid="uid://cltdh4fw2k5dg" path="res://Scenes/Players/PlayerScene_P2.tscn" id="7_kjvde"]
+[ext_resource type="Script" uid="uid://d25lsmv776f5s" path="res://Scripts/GameManager.gd" id="8_1tvcf"]
 [ext_resource type="PackedScene" uid="uid://co7hqls6b3hcl" path="res://Scenes/Levels/desert_level.tscn" id="8_n02r8"]
 [ext_resource type="Script" uid="uid://notpp627ktgt" path="res://Scripts/LevelManager.gd" id="9_n02r8"]
 [ext_resource type="PackedScene" uid="uid://bpjqufsdcri7i" path="res://Scenes/Levels/Cave Level.tscn" id="11_pe4ny"]
