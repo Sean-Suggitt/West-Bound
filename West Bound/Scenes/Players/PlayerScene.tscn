@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bb2ufopx6shlm" path="res://Scripts/PlayerScript.gd" id="1_6nwty"]
 [ext_resource type="Texture2D" uid="uid://duwhh3t7s24br" path="res://Images/Del Rato/Del Rato Idle.png" id="2_tr25n"]
-[ext_resource type="Texture2D" uid="uid://cdcodouj5kjcl" path="res://Images/Del Rato/roll shape.png" id="4_sr66r"]
+[ext_resource type="Texture2D" uid="uid://cew8vtc6d3xj2" path="res://Images/Del Rato/Del Rato Roll animation-Sheet.png" id="4_sr66r"]
 [ext_resource type="Texture2D" uid="uid://4fxukhkdluer" path="res://Images/Jump Animation skeleton-Sheet.png" id="4_tr25n"]
 [ext_resource type="Texture2D" uid="uid://bs8hli4fxc2ub" path="res://Images/Del Rato/Del Rato Run Animation Final-Sheet.png" id="5_ea6en"]
 [ext_resource type="Texture2D" uid="uid://bc4ehhmc21vdp" path="res://Images/Del Rato/Del Rato iDLE shooting-Sheet.png" id="6_42q41"]
@@ -404,7 +404,6 @@ position = Vector2(0, -4)
 scale = Vector2(1.00837, 1.00484)
 sprite_frames = SubResource("SpriteFrames_1fr6y")
 animation = &"roll"
-frame_progress = 0.904729
 
 [node name="GunPoint" type="Marker2D" parent="AniPlayerSpr"]
 position = Vector2(13.8838, -1.19209e-07)

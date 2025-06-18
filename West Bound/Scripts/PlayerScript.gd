@@ -496,7 +496,8 @@ func _roll_start(duration: float) -> void:
 		hurt_box.set_deferred("monitorable", false)
 		set_collision_mask_value(2, false)
 		set_collision_layer_value(2, false)
-
+		
+		revolver_sprite.hide()
 		
 		# Set states
 		is_rolling = true
@@ -516,6 +517,8 @@ func roll_timer_timeout() -> void:
 	hurt_box.set_deferred("monitorable", true)
 	set_collision_mask_value(2, true)
 	set_collision_layer_value(2, true)
+	if holding_item:
+		revolver_sprite.show()
 	is_rolling = false
 
 func _on_p_1_roll_timer_timeout() -> void:
