@@ -31,9 +31,9 @@ West Bound is a competitive 2D shooter designed in Godot Engine. Two players fac
 ## Running the Game
 
 1. Download or clone this repo.  
-2. Open the project in **Godot 4.x**.  
+2. Open the repo file and unzip the "WestBoundExecutable.zip" file to get the executable.  
 3. Connect two controllers.  
-4. Run the main scene.
+4. Run the executable file and enjoy the game.
 
 ## Notes
 
