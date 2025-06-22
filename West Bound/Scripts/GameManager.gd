@@ -1,6 +1,5 @@
 extends Node2D
 
-
 # Called when the node enters the scene tree for the first time.
 #Preload revlover scene
 var revolver_scene = preload("res://Scenes/Items/Revolver.tscn")
@@ -13,7 +12,7 @@ func _ready() -> void:
 	# Give the LevelManager time to load the level
 	await get_tree().process_frame
 	
-	# Wait for players to exist and connect signals
+	# needed this function to make sure signals were connecting properly
 	await _wait_for_players_and_connect()
 	
 	# Print game start message
@@ -26,12 +25,12 @@ func _ready() -> void:
 	# Spawn initial revolvers at gun holders
 	await get_tree().process_frame
 	var gun_count = _count_gun_holders()
-	if gun_count > 0:  # Fix: was checking == 0
+	if gun_count > 0:  
 		_spawn_revolvers(gun_count)
 		print("Initial revolvers spawned at gun holders")
 
 func _wait_for_players_and_connect() -> void:
-	var max_attempts = 60  # Try for about 1 second at 60fps
+	var max_attempts = 60 
 	var attempts = 0
 	
 	while attempts < max_attempts and not players_connected:
@@ -58,7 +57,7 @@ func _wait_for_players_and_connect() -> void:
 			players_connected = true
 			return
 		
-		# Wait another frame and try again
+		# Wait another frame and try again if not worked
 		await get_tree().process_frame
 		attempts += 1
 	
@@ -231,7 +230,6 @@ func _spawn_revolvers(count: int) -> Array:
 		#set Unique Name/ID
 		new_revolver.name = "Revolver" + str(i)
 		
-		#add to group
 		new_revolver.add_to_group("revolver_group")
 		
 		# Find the dynamic package to add revolvers to the same container as other items
@@ -252,16 +250,6 @@ func _spawn_revolvers(count: int) -> Array:
 	
 	return spawned_revolvers
 
-#func _position_revolvers(revolver: Node2D) -> void:
-	#var gun_holders = get_tree().get_nodes_in_group("GroupHolders")
-	##
-	###Ensure to not go out of bounds
-	##var count = min(revolvers.size(), gun_holders.size())
-		#if is_instance_valid(revolver)
-			#revolver.global_position = gun_holders[i].global_position
-			#print("Positioned ", revolvers[i].name, " at ", gun_holders[i].global_position)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	# Allow game restart when game is over
+	
 	pass

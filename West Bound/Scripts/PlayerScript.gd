@@ -166,7 +166,6 @@ func _ready() -> void:
 		if not pickup_range.area_exited.is_connected(_on_pickup_range_area_exited):
 			pickup_range.area_exited.connect(_on_pickup_range_area_exited)
 
-	#Move to spawn point on game start
 	_move_to_spawn_point()
 
 func _process(_delta: float) -> void:
@@ -198,15 +197,15 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed(input_map["pickup"]):
 		_handle_pickup_and_drop()
 		
-	# Jump handling
+	
 	_handle_jump(delta, currently_on_floor)
 	
-	# Apply gravity
+	
 	if not currently_on_floor:
 		velocity += get_gravity() * delta
 		velocity.y = min(velocity.y, terminal_velocity)
 	
-	# Movement
+	
 	var direction = Input.get_axis(input_map["left"], input_map["right"])
 	_handle_movement(direction, currently_on_floor, delta)
 	
@@ -298,7 +297,7 @@ func _handle_movement(direction: float, on_floor: bool, delta: float) -> void:
 		if sprite and sprite.sprite_frames and sprite.sprite_frames.has_animation("jump"):
 			if !is_rolling:
 				if velocity.y > 0:
-					# Get the last frame of the jummp animation
+					
 					var last_frame = sprite.sprite_frames.get_frame_count("jump") - 1
 					sprite.play("jump")
 					revolver_sprite.play("idle")
@@ -593,16 +592,14 @@ func play_run_sound() -> void:
 #----------------------- ROUND RESET FUNCTIONS ----------------------
 #--------------------------------------------------------------------
 
-# Public method for external round resets
 func reset_for_new_round() -> void:
-	"""Called by GameManager when a round resets. Handles clearing item state and other round-specific resets."""
 	
-	# Clear item holding state without dropping (items will respawn at their original positions)
+	# Clear item holding state without dropping 
 	if holding_item:
 		holding_item = false
 		if revolver_sprite:
 			revolver_sprite.hide()
-	# Clear any items that might be in range
+	
 	items_in_range.clear()
 	
 	# Reset visual state

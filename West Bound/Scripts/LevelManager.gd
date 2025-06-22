@@ -8,7 +8,7 @@ var current_level_index: int = -1
 var current_level_instance: Node = null
 
 func load_level(index: int) -> void:
-	#Remove old level if exists
+	# remove old level if exists
 	if current_level_instance and is_instance_valid(current_level_instance):
 		current_level_instance.queue_free()
 	
@@ -30,7 +30,7 @@ func next_level() -> void:
 	else:
 		next_index = randi() % levels.size()
 		if levels.size() > 1 and next_index == current_level_index:
-			next_level()  # Recursive call to get a different level
+			next_level()  # recursive call to get a different level
 			return
 	
 	load_level(next_index)
@@ -40,8 +40,5 @@ func _ready() -> void:
 	if not levels.is_empty():
 		load_level(0)
 
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

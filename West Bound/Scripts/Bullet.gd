@@ -24,10 +24,10 @@ func setup(player_name: String, shoot_direction: int) -> void:
 		area.set_collision_mask_value(get_player_layer(player_name), false)
 
 func _ready() -> void:
-	# Add to bullet group for easy identification
+	# add to bullet group for easy identification
 	add_to_group("bullets")
 	
-	# Connect signals if not connected in editor
+	#Connect signals if not connected in editor
 	if not $WorldCollisionDetection.body_entered.is_connected(_on_world_collision):
 		$WorldCollisionDetection.body_entered.connect(_on_world_collision)
 	if not $PlayerCollisionDetection.area_entered.is_connected(_on_player_collision):
@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 		_destroy_bullet()
 		return
 	
-	# Move bullet
+	# move bullet
 	move_and_slide()
 
 func _on_world_collision(body: Node2D) -> void:
@@ -61,5 +61,5 @@ func _destroy_bullet() -> void:
 	queue_free()
 
 func get_player_layer(player_name: String) -> int:
-	# Return appropriate collision layer based on player
+	# return appropriate collision layer based on player
 	return 2 if player_name == "P1" else 3

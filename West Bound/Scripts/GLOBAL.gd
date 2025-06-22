@@ -33,7 +33,7 @@ var player_states = {
 var active_bullets: Dictionary = {}  # Use unique IDs instead of array
 var bullet_counter: int = 0
 
-# Remove the _process function - direction should be updated by players themselves
+
 func register_bullet(bullet_instance) -> int:
 	bullet_counter += 1
 	active_bullets[bullet_counter] = bullet_instance
@@ -50,13 +50,13 @@ func damage_player(player_name: String, damage: int) -> void:
 			player_states[player_name]["alive"] = false
 			player_states[player_name]["hp"] = 0
 
-# Reset player state (useful for respawning)
+# Reset player state 
 func reset_player(player_name: String) -> void:
 	if player_states.has(player_name):
 		player_states[player_name]["hp"] = MAX_PLAYER_HP
 		player_states[player_name]["alive"] = true
 
-# Get player health percentage (useful for UI)
+# Get player health percentage 
 func get_player_health_percentage(player_name: String) -> float:
 	if player_states.has(player_name):
 		return float(player_states[player_name]["hp"]) / float(MAX_PLAYER_HP)
@@ -76,10 +76,3 @@ func get_score(player_name: String) -> int:
 func reset_scores() -> void:
 	for player in player_states:
 		player_states[player]["score"] = 0
-
-# Define general classes such as item and entity
-# Manage loading levels
-# 		Note: levels should have similar scripts to 
-# 		      handle spawning players, items, and resetting the level.
-# Manage player score
-# Manage 
